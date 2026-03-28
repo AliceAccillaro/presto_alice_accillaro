@@ -61,8 +61,8 @@
                         </div>
                     @else
                         <div class="site-navbar-buttons">
-                            <a class="site-navbar-button-login" href="">Accedi</a>
-                            <a class="site-navbar-button-register" href="">Registrati</a>
+                            <a class="site-navbar-button-login" href="{{ route('login') }}">Accedi</a>
+                            <a class="site-navbar-button-register" href="{{ route('register') }}">Registrati</a>
                         </div>
                     @endauth
                 </div>
