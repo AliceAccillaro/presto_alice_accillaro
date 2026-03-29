@@ -31,6 +31,10 @@ body {
 /* =========================
    NAVBAR
 ========================= */
+.site-navbar-brand-logo {
+    height: 40px;  
+    width: auto; 
+}
 
 .site-navbar-wrapper {
     padding-top: 24px;
@@ -59,7 +63,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: linear-gradient(135deg, #222222, #555555);
+    background: linear-gradient(135deg, #174e5f, #4c98af);
     color: var(--color-white);
     font-size: 14px;
 }

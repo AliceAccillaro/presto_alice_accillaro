@@ -3,7 +3,7 @@
         <nav class="site-navbar navbar navbar-expand-lg">
             <a class="site-navbar-brand" href="{{ route('home') }}">
                 <span class="site-navbar-brand-icon">
-                    <i class="fas fa-bolt"></i>
+                    <img src="{{ asset('images/presto-logo.png') }}" alt="Presto Logo" class="site-navbar-brand-logo">
                 </span>
                 <span class="site-navbar-brand-text">Presto</span>
             </a>
