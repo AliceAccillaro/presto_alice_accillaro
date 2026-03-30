@@ -43,6 +43,9 @@
 
                             <div class="home-hero-card-body">
                                 <h3 class="home-hero-card-title">Inserisci e vendi prodotti in modo veloce</h3>
+                                @auth
+                                    <a class="btn btn-dark" href="{{ route('create.article')}}">Pubblica un articolo</a>
+                                @endauth
                                 <p class="home-hero-card-text">
                                     Metti in vendita i tuoi prodotti in pochi clic e raggiungi più clienti con la nostra piattaforma intuitiva.
                                 </p>

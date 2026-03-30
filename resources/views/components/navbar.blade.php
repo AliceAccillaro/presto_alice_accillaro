@@ -29,7 +29,7 @@
                         <a class="nav-link site-navbar-link" href="#">//</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link site-navbar-link" href="#">//</a>
+                        <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">Crea Articolo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link site-navbar-link" href="#">//</a>

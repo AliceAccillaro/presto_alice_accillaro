@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -24,5 +25,10 @@ return new class extends Category {
     public function down()
     {
         Schema::dropIfExists('categories');
+    }
+     
+    public function articles() : HasMany
+    {
+        return $this->hasMany(Article::class);
     }
 };
