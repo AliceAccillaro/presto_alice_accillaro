@@ -31,13 +31,18 @@ body {
 /* =========================
    NAVBAR
 ========================= */
+
 .site-navbar-brand-logo {
-    height: 40px;  
-    width: auto; 
+    height: 40px;
+    width: auto;
 }
 
 .site-navbar-wrapper {
     padding-top: 24px;
+    padding-bottom: 12px;
+    position: relative;
+    z-index: 3000;
+    isolation: isolate;
 }
 
 .site-navbar {
@@ -47,6 +52,8 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: var(--shadow-navbar);
     backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 3001;
 }
 
 .site-navbar-brand {
@@ -136,9 +143,56 @@ body {
     box-shadow: none;
 }
 
+.site-navbar-wrapper,
+.site-navbar,
+.navbar-collapse,
+.nav-item.dropdown {
+    overflow: visible;
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    transform: none;
+    z-index: 4000;
+    min-width: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    border-radius: 16px;
+    border: 1px solid #e4e4e4;
+    box-shadow: var(--shadow-light);
+    padding: 8px 0;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    padding: 10px 16px;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: var(--color-black);
+}
+
 /* =========================
    HOME HERO
 ========================= */
+
+.home-hero-section {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+}
 
 .home-hero {
     padding: 70px 0 90px;
@@ -245,6 +299,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .home-hero-card {
@@ -265,11 +320,10 @@ body {
 .home-hero-card-middle {
     background: var(--color-black);
     transform: rotate(8deg) translate(70px, -5px);
-    z-index: 2;
+    z-index: 1;
 }
 
 .home-hero-card-front {
-    z-index: 3;
     padding: 28px;
     overflow: hidden;
     color: var(--color-white);
@@ -278,6 +332,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     background: linear-gradient(135deg, var(--color-black), var(--color-black) 55%, #bfc9ba 100%);
+    z-index: 1;
 }
 
 .home-hero-card-top {
@@ -325,6 +380,72 @@ body {
 }
 
 /* =========================
+   AUTH (LOGIN / REGISTER)
+========================= */
+
+.auth-section {
+    padding: 80px 0;
+}
+
+.auth-row {
+    min-height: calc(100vh - 160px);
+}
+
+.auth-card {
+    padding: 32px;
+    border-radius: 24px;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-light);
+}
+
+.auth-header {
+    margin-bottom: 24px;
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.auth-form p {
+    margin-bottom: 16px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 
@@ -340,6 +461,12 @@ body {
 
     .site-navbar-actions {
         margin-top: 10px;
+    }
+
+    .dropdown-menu {
+        left: 0;
+        transform: none;
+        min-width: 220px;
     }
 
     .home-hero {
@@ -424,77 +551,4 @@ body {
         width: 48px;
         height: 32px;
     }
-}
-
-/* =========================
-   FINE HOME
-========================= */
-
-
-/* =========================
-   AUTH (LOGIN / REGISTER)
-========================= */
-
-.auth-section {
-    padding: 80px 0;
-}
-
-.auth-row {
-    min-height: calc(100vh - 160px);
-}
-
-.auth-card {
-    padding: 32px;
-    border-radius: 24px;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow-light);
-}
-
-.auth-header {
-    margin-bottom: 24px;
-}
-
-.auth-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.auth-subtitle {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-}
-
-/* FORM */
-.auth-form p {
-    margin-bottom: 16px;
-}
-
-.auth-form input {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-    margin-top: 6px;
-    font-size: 14px;
-}
-
-.auth-form input:focus {
-    outline: none;
-    border-color: #999;
-}
-
-/* FOOTER */
-.auth-footer {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.auth-footer a {
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.auth-footer a:hover {
-    text-decoration: underline;
 }
