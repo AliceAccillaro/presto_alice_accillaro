@@ -2,7 +2,6 @@
     <div class="container">
         <nav class="site-navbar navbar navbar-expand-lg">
 
-            <!-- LOGO -->
             <a class="site-navbar-brand" href="{{ route('home') }}">
                 <span class="site-navbar-brand-icon">
                     <img src="{{ asset('images/presto-logo.png') }}" alt="Presto Logo" class="site-navbar-brand-logo">
@@ -10,7 +9,6 @@
                 <span class="site-navbar-brand-text">Presto</span>
             </a>
 
-            <!-- TOGGLER -->
             <button
                 class="navbar-toggler site-navbar-toggler"
                 type="button"
@@ -20,20 +18,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- CONTENUTO -->
             <div class="collapse navbar-collapse" id="siteNavbarContent">
 
-                <!-- LINK CENTRALI -->
                 <ul class="navbar-nav mx-auto site-navbar-links">
 
-                    <!-- HOME -->
                     <li class="nav-item">
                         <a class="nav-link site-navbar-link" href="{{ route('home') }}">
                             Home
                         </a>
                     </li>
 
-                    <!-- CATEGORIE -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle site-navbar-link" href="#" role="button" data-bs-toggle="dropdown">
                             Categorie
@@ -58,7 +52,6 @@
                         </ul>
                     </li>
 
-                    <!-- CREA ARTICOLO -->
                     @auth
                     <li class="nav-item">
                         <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">
@@ -69,7 +62,6 @@
 
                 </ul>
 
-                <!-- DESTRA -->
                 <div class="site-navbar-actions">
 
                     @auth
@@ -87,6 +79,18 @@
                                 </li>
 
                                 <li><hr class="dropdown-divider"></li>
+
+                                @if(Auth::user()->is_revisor)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('revisor.index') }}">
+                                        Zona Revisore
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ \App\Models\Article::toBeRevisionedCount() }}
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                @endif
 
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="px-3">
