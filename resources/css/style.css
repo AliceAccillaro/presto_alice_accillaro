@@ -274,7 +274,7 @@ body {
 }
 
 .home-button-primary:hover {
-    background-color: #1b1b1b;
+    background-color: var(--color-success);
     color: var(--color-white);
 }
 
@@ -431,18 +431,32 @@ body {
     border-color: #999;
 }
 
-.auth-footer {
-    margin-top: 20px;
-    font-size: 14px;
+.footer {
+    background-color: #f8f9fa;
 }
 
-.auth-footer a {
-    font-weight: 500;
+.footer-link {
     text-decoration: none;
+    color: var(--color-black);
 }
 
-.auth-footer a:hover {
-    text-decoration: underline;
+.footer-link:hover {
+    color: var(--color-success);
+}
+
+.footer-button {
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 400;
+    transition: 0.2s ease;
+}
+
+.footer-button:hover {
+    background-color: var(--color-success);
 }
 
 /* =========================

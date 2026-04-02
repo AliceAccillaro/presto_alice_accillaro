@@ -15,7 +15,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::orderedBy('created_at', 'desc')->paginate(6);
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->paginate(6);
         return view('article.index', compact('articles'));
     }
 
@@ -25,7 +25,7 @@ class ArticleController extends Controller
     }
     public function byCategory(Category $category)
     {
-        $articles = $category->articles()->latest()->get();
+        $articles = $category->articles()->where('is_accepted', true)->latest()->get();
 
         return view('article.byCategory', compact('category', 'articles'));
     }
