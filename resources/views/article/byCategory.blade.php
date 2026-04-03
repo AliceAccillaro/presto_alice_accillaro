@@ -1,31 +1,55 @@
 <x-layout>
+    <section class="container my-5">
+        <div class="mb-4">
+            <h1 class="mb-2">Categoria: {{ $category->name }}</h1>
 
-<div class="container my-5">
+            @if(request('q'))
+                <p class="text-muted mb-0">
+                    Risultati per: <strong>{{ request('q') }}</strong>
+                </p>
+            @endif
+        </div>
 
-    <h2 class="mb-4">
-        Articoli nella categoria: {{ $category->name }}
-    </h2>
+        <div class="row g-4">
+            @forelse($articles as $article)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img
+                            src="https://picsum.photos/600/400?random={{ $article->id }}"
+                            class="card-img-top"
+                            alt="immagine articolo {{ $article->title }}"
+                        >
 
-    <div class="row">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-secondary mb-2 align-self-start">
+                                {{ $article->category->name ?? 'Senza categoria' }}
+                            </span>
 
-        @forelse ($articles as $article)
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
+                            <h5 class="card-title">{{ $article->title }}</h5>
 
-                    <div class="card-body">
-                        <h5>{{ $article->title }}</h5>
-                        <p>{{ $article->description }}</p>
-                        <p><strong>{{ $article->price }} €</strong></p>
+                            <p class="card-text text-muted flex-grow-1">
+                                {{ Str::limit($article->description, 100) }}
+                            </p>
+
+                            <p class="fw-bold mb-3">{{ $article->price }} €</p>
+
+                            <a href="{{ route('article.show', $article) }}" class="btn btn-dark">
+                                Dettaglio
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-            </div>
-        @empty
-            <p>Nessun articolo in questa categoria.</p>
-        @endforelse
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-light border text-center">
+                        Nessun articolo trovato in questa categoria.
+                    </div>
+                </div>
+            @endforelse
+        </div>
 
-    </div>
-
-</div>
-
+        <div class="mt-4">
+            {{ $articles->links() }}
+        </div>
+    </section>
 </x-layout>

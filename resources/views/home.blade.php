@@ -45,7 +45,7 @@
 
                             <div class="home-hero-card home-hero-card-front">
                                 <div class="home-hero-card-top">
-                                    <span class="home-hero-card-label">PRESTO</span>
+                                    <span class="home-hero-card-label">PRESTO!</span>
                                 </div>
 
                                 <div class="home-hero-card-body">
@@ -66,6 +66,62 @@
 
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">Ultimi articoli</h2>
+
+                @if(request('q'))
+                    <p class="text-muted mb-0">
+                        Risultati per: <strong>{{ request('q') }}</strong>
+                    </p>
+                @endif
+            </div>
+        </div>
+
+        <div class="row g-4">
+            @forelse($articles as $article)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img
+                            src="https://picsum.photos/600/400?random={{ $article->id }}"
+                            class="card-img-top"
+                            alt="immagine articolo {{ $article->title }}"
+                        >
+
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge_custom  mb-2 align-self-start">
+                                {{ $article->category->name ?? 'Senza categoria' }}
+                            </span>
+
+                            <h5 class="card-title">{{ $article->title }}</h5>
+
+                            <p class="card-text text-muted flex-grow-1">
+                                {{ Str::limit($article->description, 100) }}
+                            </p>
+
+                            <p class="fw-bold mb-3">{{ $article->price }} €</p>
+
+                            <a href="{{ route('article.show', $article) }}" class="home-button home-button-primary">
+                                Dettaglio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-light border text-center">
+                        Nessun articolo trovato.
+                    </div>
+                </div>
+            @endforelse
+        </div>
+
+        <div class="mt-4">
+            {{ $articles->links() }}
         </div>
     </section>
 </x-layout>

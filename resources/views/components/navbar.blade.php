@@ -6,7 +6,7 @@
                 <span class="site-navbar-brand-icon">
                     <img src="{{ asset('images/presto-logo.png') }}" alt="Presto Logo" class="site-navbar-brand-logo">
                 </span>
-                <span class="site-navbar-brand-text">Presto</span>
+                <span class="nav-text-presto">PRESTO!</span>
             </a>
 
             <button
@@ -34,6 +34,11 @@
                         </a>
 
                         <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                    Tutte le categorie
+                                </a>
+                            </li>
 
                             @forelse ($categories as $category)
                                 <li>
@@ -48,19 +53,39 @@
                                     </span>
                                 </li>
                             @endforelse
-
                         </ul>
                     </li>
 
                     @auth
-                    <li class="nav-item">
-                        <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">
-                            Crea Articolo
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">
+                                Crea Articolo
+                            </a>
+                        </li>
                     @endauth
 
                 </ul>
+
+                @php
+                    $currentCategory = request()->route('category');
+                @endphp
+
+                <form
+                    action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
+                    method="GET"
+                    class="d-flex align-items-center me-3"
+                >
+                    <input
+                        type="text"
+                        name="q"
+                        class="form-control me-2 search-bord"
+                        placeholder="Cerca articoli..."
+                        value="{{ request('q') }}"
+                    >
+                    <button type="submit" class="site-navbar-button-register ">
+                        Cerca
+                    </button>
+                </form>
 
                 <div class="site-navbar-actions">
 
@@ -81,15 +106,15 @@
                                 <li><hr class="dropdown-divider"></li>
 
                                 @if(Auth::user()->is_revisor)
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('revisor.index') }}">
-                                        Zona Revisore
-                                        <span class="badge rounded-pill bg-danger">
-                                            {{ \App\Models\Article::toBeRevisionedCount() }}
-                                        </span>
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('revisor.index') }}">
+                                            Zona Revisore
+                                            <span class="badge rounded-pill bg-danger">
+                                                {{ \App\Models\Article::toBeRevisionedCount() }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                 @endif
 
                                 <li>
@@ -104,10 +129,10 @@
                         </div>
                     @else
                         <div class="site-navbar-buttons">
-                            <a class="site-navbar-button-login" href="{{ route('login') }}">
+                            <a class="home-button home-button-secondary" href="{{ route('login') }}">
                                 Accedi
                             </a>
-                            <a class="site-navbar-button-register" href="{{ route('register') }}">
+                            <a class="home-button home-button-primary" href="{{ route('register') }}">
                                 Registrati
                             </a>
                         </div>

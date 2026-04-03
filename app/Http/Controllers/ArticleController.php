@@ -13,9 +13,28 @@ class ArticleController extends Controller
         return view('article.create');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->paginate(6);
+        $articles = Article::with('category')
+            ->where('is_accepted', true)
+            ->when($request->filled('q'), function ($query) use ($request) {
+                $search = trim($request->q);
+                $words = preg_split('/\s+/', $search);
+
+                foreach ($words as $word) {
+                    $query->where(function ($q) use ($word) {
+                        $q->where('title', 'like', "%{$word}%")
+                          ->orWhere('description', 'like', "%{$word}%")
+                          ->orWhereHas('category', function ($categoryQuery) use ($word) {
+                              $categoryQuery->where('name', 'like', "%{$word}%");
+                          });
+                    });
+                }
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(6)
+            ->withQueryString();
+
         return view('article.index', compact('articles'));
     }
 
@@ -23,9 +42,26 @@ class ArticleController extends Controller
     {
         return view('article.show', compact('article'));
     }
-    public function byCategory(Category $category)
+
+    public function byCategory(Category $category, Request $request)
     {
-        $articles = $category->articles()->where('is_accepted', true)->latest()->get();
+        $articles = Article::with('category')
+            ->where('is_accepted', true)
+            ->where('category_id', $category->id)
+            ->when($request->filled('q'), function ($query) use ($request) {
+                $search = trim($request->q);
+                $words = preg_split('/\s+/', $search);
+
+                foreach ($words as $word) {
+                    $query->where(function ($q) use ($word) {
+                        $q->where('title', 'like', "%{$word}%")
+                          ->orWhere('description', 'like', "%{$word}%");
+                    });
+                }
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(6)
+            ->withQueryString();
 
         return view('article.byCategory', compact('category', 'articles'));
     }

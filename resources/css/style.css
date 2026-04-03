@@ -37,6 +37,14 @@ body {
     width: auto;
 }
 
+.nav-text-presto {
+    font: bold 25px 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--color-black);
+}
+
 .site-navbar-wrapper {
     padding-top: 24px;
     padding-bottom: 12px;
@@ -148,6 +156,11 @@ body {
 .navbar-collapse,
 .nav-item.dropdown {
     overflow: visible;
+}
+
+.search-bord{
+    border-radius: var(--radius-pill);
+
 }
 
 /* =========================
@@ -342,10 +355,12 @@ body {
 }
 
 .home-hero-card-label {
-    font-size: 0.8rem;
+    font: bold 25px 'Roboto', sans-serif;
+    font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
 }
+
 
 .home-hero-card-badge {
     padding: 8px 12px;
@@ -565,4 +580,16 @@ body {
         width: 48px;
         height: 32px;
     }
+}
+
+/* =========================
+   SECTION RISULTATI RICERCA
+========================= */
+
+.badge_custom {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-success);
+    color: white;
 }
