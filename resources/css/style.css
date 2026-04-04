@@ -163,6 +163,19 @@ body {
 
 }
 
+.locale-flag {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.locale-flag:hover {
+    transform: scale(1.08);
+}
+
 /* =========================
    DROPDOWN
 ========================= */

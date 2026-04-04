@@ -8,30 +8,32 @@
                         <div class="home-hero-content">
                             <div class="home-hero-badge">
                                 <span class="home-hero-badge-dot"></span>
-                                Disponibile ora
+                                {{ __('home.availableNow') }}
                             </div>
 
                             <h1 class="home-hero-title">
-                                Piattaforma di vendita
-                                <span class="home-hero-title-strong">che fa la differenza.</span>
+                                {{ __('home.platformTitle') }}
+                                <span class="home-hero-title-strong">
+                                    {{ __('home.platformStrong') }}
+                                </span>
                             </h1>
 
                             <p class="home-hero-description">
-                                Una piattaforma semplice e moderna per inserire e vendere prodotti in modo veloce e intuitivo, disponibile in tutto il mondo.
+                                {{ __('home.description') }}
                             </p>
 
                             <div class="home-hero-actions">
                                 @auth
                                     <a href="{{ route('create.article') }}" class="home-button home-button-primary">
-                                        Pubblica un articolo
+                                        {{ __('home.publishArticle') }}
                                     </a>
                                 @else
                                     <a href="{{ route('register') }}" class="home-button home-button-primary">
-                                        Inizia ora
+                                        {{ __('home.startNow') }}
                                     </a>
 
                                     <a href="{{ route('login') }}" class="home-button home-button-secondary">
-                                        Accedi
+                                        {{ __('home.login') }}
                                     </a>
                                 @endauth
                             </div>
@@ -49,9 +51,11 @@
                                 </div>
 
                                 <div class="home-hero-card-body">
-                                    <h3 class="home-hero-card-title">Inserisci e vendi prodotti in modo veloce</h3>
+                                    <h3 class="home-hero-card-title">
+                                        {{ __('home.cardTitle') }}
+                                    </h3>
                                     <p class="home-hero-card-text">
-                                        Metti in vendita i tuoi prodotti in pochi clic e raggiungi più clienti con la nostra piattaforma intuitiva.
+                                        {{ __('home.cardText') }}
                                     </p>
                                 </div>
 
@@ -72,11 +76,11 @@
     <section class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h2 class="mb-1">Ultimi articoli</h2>
+                <h2 class="mb-1">{{ __('home.latestArticles') }}</h2>
 
                 @if(request('q'))
                     <p class="text-muted mb-0">
-                        Risultati per: <strong>{{ request('q') }}</strong>
+                        {{ __('home.resultsFor') }} <strong>{{ request('q') }}</strong>
                     </p>
                 @endif
             </div>
@@ -93,8 +97,8 @@
                         >
 
                         <div class="card-body d-flex flex-column">
-                            <span class="badge_custom  mb-2 align-self-start">
-                                {{ $article->category->name ?? 'Senza categoria' }}
+                            <span class="badge_custom mb-2 align-self-start">
+                                {{ $article->category->name ?? __('home.noCategory') }}
                             </span>
 
                             <h5 class="card-title">{{ $article->title }}</h5>
@@ -106,7 +110,7 @@
                             <p class="fw-bold mb-3">{{ $article->price }} €</p>
 
                             <a href="{{ route('article.show', $article) }}" class="home-button home-button-primary">
-                                Dettaglio
+                                {{ __('home.detail') }}
                             </a>
                         </div>
                     </div>
@@ -114,7 +118,7 @@
             @empty
                 <div class="col-12">
                     <div class="alert alert-light border text-center">
-                        Nessun articolo trovato.
+                        {{ __('home.noArticles') }}
                     </div>
                 </div>
             @endforelse

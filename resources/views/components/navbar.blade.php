@@ -9,12 +9,8 @@
                 <span class="nav-text-presto">PRESTO!</span>
             </a>
 
-            <button
-                class="navbar-toggler site-navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#siteNavbarContent"
-            >
+            <button class="navbar-toggler site-navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#siteNavbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -24,19 +20,20 @@
 
                     <li class="nav-item">
                         <a class="nav-link site-navbar-link" href="{{ route('home') }}">
-                            Home
+                            {{ __('navbar.home') }}
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle site-navbar-link" href="#" role="button" data-bs-toggle="dropdown">
-                            Categorie
+                        <a class="nav-link dropdown-toggle site-navbar-link" href="#" role="button"
+                            data-bs-toggle="dropdown">
+                            {{ __('navbar.categories') }}
                         </a>
 
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="{{ route('home') }}">
-                                    Tutte le categorie
+                                    {{ __('navbar.allCategories') }}
                                 </a>
                             </li>
 
@@ -49,7 +46,7 @@
                             @empty
                                 <li>
                                     <span class="dropdown-item text-muted">
-                                        Nessuna categoria
+                                        {{ __('navbar.noCategories') }}
                                     </span>
                                 </li>
                             @endforelse
@@ -59,7 +56,7 @@
                     @auth
                         <li class="nav-item">
                             <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">
-                                Crea Articolo
+                                {{ __('navbar.createArticle') }}
                             </a>
                         </li>
                     @endauth
@@ -70,24 +67,28 @@
                     $currentCategory = request()->route('category');
                 @endphp
 
-                <form
-                    action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
-                    method="GET"
-                    class="d-flex align-items-center me-3"
-                >
-                    <input
-                        type="text"
-                        name="q"
-                        class="form-control me-2 search-bord"
-                        placeholder="Cerca articoli..."
-                        value="{{ request('q') }}"
-                    >
+                <form action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
+                    method="GET" class="d-flex align-items-center me-3">
+                    <input type="text" name="q" class="form-control me-2 search-bord"
+                        placeholder="{{ __('navbar.searchPlaceholder') }}" value="{{ request('q') }}">
                     <button type="submit" class="site-navbar-button-register ">
-                        Cerca
+                        {{ __('navbar.search') }}
                     </button>
                 </form>
 
-                <div class="site-navbar-actions">
+                <div class="site-navbar-actions d-flex align-items-center gap-3">
+
+                    <a href="{{ route('setLocale', 'it') }}">
+                        <x-flag-language-it class="locale-flag" />
+                    </a>
+
+                    <a href="{{ route('setLocale', 'en') }}">
+                        <x-flag-language-en class="locale-flag" />
+                    </a>
+
+                    <a href="{{ route('setLocale', 'es') }}">
+                        <x-flag-language-es class="locale-flag" />
+                    </a>
 
                     @auth
                         <div class="dropdown">
@@ -103,25 +104,29 @@
                                     </span>
                                 </li>
 
-                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
 
-                                @if(Auth::user()->is_revisor)
+                                @if (Auth::user()->is_revisor)
                                     <li>
                                         <a class="dropdown-item" href="{{ route('revisor.index') }}">
-                                            Zona Revisore
+                                            {{ __('navbar.revisorZone') }}
                                             <span class="badge rounded-pill bg-danger">
                                                 {{ \App\Models\Article::toBeRevisionedCount() }}
                                             </span>
                                         </a>
                                     </li>
-                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                 @endif
 
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="px-3">
                                         @csrf
                                         <button type="submit" class="dropdown-item">
-                                            Logout
+                                            {{ __('navbar.logout') }}
                                         </button>
                                     </form>
                                 </li>
@@ -130,10 +135,10 @@
                     @else
                         <div class="site-navbar-buttons">
                             <a class="home-button home-button-secondary" href="{{ route('login') }}">
-                                Accedi
+                                {{ __('navbar.login') }}
                             </a>
                             <a class="home-button home-button-primary" href="{{ route('register') }}">
-                                Registrati
+                                {{ __('navbar.register') }}
                             </a>
                         </div>
                     @endauth

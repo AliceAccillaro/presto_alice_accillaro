@@ -36,3 +36,5 @@ Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])
 
 Route::get('/make/revisor/{user}', [RevisorController::class, 'makeRevisor'])
     ->name('make.revisor');
+Route::get('/lingua/{lang}', [PublicController::class, 'setLanguage'])
+    ->name('setLocale');
