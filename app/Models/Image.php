@@ -34,6 +34,26 @@ class Image extends Model
 
     public function getUrl($w = null, $h = null)
     {
-        return self::getUrlByFilePath($this->path, $w, $h);
+        $baseName = basename($this->path);
+        $dirName = dirname($this->path);
+
+        $candidates = [];
+
+        if ($w && $h) {
+            $candidates[] = $dirName . "/crop_{$w}x{$h}_{$baseName}";
+        }
+
+        if ($w) {
+            $candidates[] = $dirName . "/crop_{$w}_{$baseName}";
+            $candidates[] = $dirName . "/resize_{$w}_{$baseName}";
+        }
+
+        foreach ($candidates as $candidate) {
+            if (file_exists(storage_path('app/public/' . $candidate))) {
+                return asset('storage/' . $candidate);
+            }
+        }
+
+        return asset('storage/' . $this->path);
     }
 }
