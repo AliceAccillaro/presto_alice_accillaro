@@ -8,17 +8,12 @@
         <div class="col-12 col-md-6 mb-3">
             <div id="CarouselExample" class="carousel slide">
                 <div class="carousel-inner">
-                    @forelse ($article->images as $key => $image)
-                        <div class="carousel-item @if ($key === 0) active @endif">
-                            <img src="{{ asset('storage/' . $image->path) }}" class="d-block w-100 rounded shadow"
-                                alt="immagine dell'articolo {{ $article->title }}">
+                    @foreach ($article->images as $key => $image)
+                        <div class="carousel-item @if ($loop->first) active @endif">
+                            <img src="{{ $image->getUrl(300, 300) }}" class="d-block w-100 rounded shadow"
+                                alt="immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
                         </div>
-                    @empty
-                        <div class="carousel-item active">
-                            <img src="https://picsum.photos/400" class="d-block w-100 rounded shadow"
-                                alt="immagine placeholder">
-                        </div>
-                    @endforelse
+                    @endforeach
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#CarouselExample"
