@@ -1,9 +1,9 @@
 <x-layout>
     <div class="container-fluid pt-5">
-         @if (session()->has('message'))
+        @if (session()->has('message'))
             <div class="row justify-content-center">
                 <div class="col-5 alert alert-success text-center shadow rounded">
-                        {{ session('message') }}
+                    {{ session('message') }}
                 </div>
             </div>
         @endif
@@ -18,12 +18,16 @@
             <div class="row justify-content-center pt-5">
                 <div class="col-md-8">
                     <div class="row justify-content-center">
-                        @for ($i = 0; $i < 6; $i++)
+                        @forelse ($article_to_check->images as $image)
                             <div class="col-6 col-md-4 mb-4 text-center">
-                                <img src="https://picsum.photos/300" class="img-fluid rounded shadow"
-                                    alt="immagine segnaposto">
+                                <img src="{{ asset('storage/' . $image->path) }}" class="img-fluid rounded shadow"
+                                    alt="immagine dell'articolo {{ $article_to_check->title }}">
                             </div>
-                        @endfor
+                        @empty
+                            <div class="col-12 text-center">
+                                <p class="text-muted">Nessuna immagine caricata</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="col-md-4 ps-4 d-flex flex-column justify-content-between">
@@ -52,7 +56,7 @@
             <div class="row justify-content-center align-items-center height-custom text-center">
                 <div class="col-12">
                     <h1 class="fst-italic display-4">Nessun articolo da revisionare</h1>
-                    <a href="{{ route('homepage') }}" class="mt-5 btn btn-success">Torna all'homepage</a>
+                    <a href="{{ route('home') }}" class="mt-5 btn btn-success">Torna all'homepage</a>
                 </div>
             </div>
         @endif

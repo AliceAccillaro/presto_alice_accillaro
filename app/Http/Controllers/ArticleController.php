@@ -15,7 +15,7 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::with('category')
+        $articles = Article::with(['category', 'images'])
             ->where('is_accepted', true)
             ->when($request->filled('q'), function ($query) use ($request) {
                 $search = trim($request->q);
@@ -24,10 +24,10 @@ class ArticleController extends Controller
                 foreach ($words as $word) {
                     $query->where(function ($q) use ($word) {
                         $q->where('title', 'like', "%{$word}%")
-                          ->orWhere('description', 'like', "%{$word}%")
-                          ->orWhereHas('category', function ($categoryQuery) use ($word) {
-                              $categoryQuery->where('name', 'like', "%{$word}%");
-                          });
+                            ->orWhere('description', 'like', "%{$word}%")
+                            ->orWhereHas('category', function ($categoryQuery) use ($word) {
+                                $categoryQuery->where('name', 'like', "%{$word}%");
+                            });
                     });
                 }
             })
@@ -40,12 +40,13 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
+        $article->load(['category', 'user', 'images']);
         return view('article.show', compact('article'));
     }
 
     public function byCategory(Category $category, Request $request)
     {
-        $articles = Article::with('category')
+        $articles = Article::with(['category', 'images'])
             ->where('is_accepted', true)
             ->where('category_id', $category->id)
             ->when($request->filled('q'), function ($query) use ($request) {
@@ -55,7 +56,7 @@ class ArticleController extends Controller
                 foreach ($words as $word) {
                     $query->where(function ($q) use ($word) {
                         $q->where('title', 'like', "%{$word}%")
-                          ->orWhere('description', 'like', "%{$word}%");
+                            ->orWhere('description', 'like', "%{$word}%");
                     });
                 }
             })

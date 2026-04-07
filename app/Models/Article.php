@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Image;
 
 class Article extends Model
 {
@@ -43,5 +45,10 @@ class Article extends Model
     public static function toBeRevisionedCount()
     {
         return Article::where('is_accepted', null)->count();
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }

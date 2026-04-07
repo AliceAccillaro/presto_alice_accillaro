@@ -78,7 +78,7 @@
             <div>
                 <h2 class="mb-1">{{ __('home.latestArticles') }}</h2>
 
-                @if(request('q'))
+                @if (request('q'))
                     <p class="text-muted mb-0">
                         {{ __('home.resultsFor') }} <strong>{{ request('q') }}</strong>
                     </p>
@@ -90,11 +90,13 @@
             @forelse($articles as $article)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0">
-                        <img
-                            src="https://picsum.photos/600/400?random={{ $article->id }}"
-                            class="card-img-top"
-                            alt="immagine articolo {{ $article->title }}"
-                        >
+                        @if ($article->images->count())
+                            <img src="{{ asset('storage/' . $article->images->first()->path) }}" class="card-img-top"
+                                alt="immagine articolo {{ $article->title }}">
+                        @else
+                            <img src="https://picsum.photos/600/400?random={{ $article->id }}" class="card-img-top"
+                                alt="immagine placeholder {{ $article->title }}">
+                        @endif
 
                         <div class="card-body d-flex flex-column">
                             <span class="badge_custom mb-2 align-self-start">
