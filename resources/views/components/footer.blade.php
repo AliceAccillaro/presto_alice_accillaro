@@ -4,29 +4,36 @@
         <div class="row align-items-start">
 
             <div class="col-md-4 mb-2">
-                <h6 class="fw-bold mb-1">Presto.it</h6>
+                <h6 class="fw-bold mb-1">{{ __('footer.title') }}</h6>
                 <p class="text-muted small mb-0">
-                    Compra e vendi in modo semplice e veloce.
+                    {{ __('footer.description') }}
                 </p>
             </div>
 
             <div class="col-md-4 mb-2">
-                <h6 class="fw-bold mb-1">Link utili</h6>
+                <h6 class="fw-bold mb-1">{{ __('footer.usefulLinks') }}</h6>
                 <ul class="list-unstyled mb-0 small">
-                    <li><a href="{{ route('home') }}" class="footer-link">Home</a></li>
-                    <li><a href="#" class="footer-link">Categorie</a></li>
-                    <li><a href="#" class="footer-link">Contatti</a></li>
+                    <li><a href="{{ route('home') }}" class="footer-link">{{ __('footer.home') }}</a></li>
+                    <li><a href="#" class="footer-link">{{ __('footer.categories') }}</a></li>
+                    <li><a href="#" class="footer-link">{{ __('footer.contacts') }}</a></li>
                 </ul>
             </div>
 
             <div class="col-md-4 mb-2">
-                <h6 class="fw-bold mb-1">Diventa revisore</h6>
+                <h6 class="fw-bold mb-1">{{ __('footer.becomeRevisor') }}</h6>
                 <p class="text-muted small mb-1">
-                    Aiutaci a moderare gli articoli
+                    {{ __('footer.revisorDescription') }}
                 </p>
-                <a href="{{ route('become.revisor') }}" class="btn footer-button">
-                    Diventa Revisore
-                </a>
+
+                @auth
+                    <a href="{{ route('work.with.us') }}" class="btn footer-button">
+                        {{ __('footer.revisorButton') }}
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btn footer-button">
+                        {{ __('footer.revisorButton') }}
+                    </a>
+                @endauth
             </div>
 
         </div>
@@ -34,7 +41,7 @@
         <hr class="my-2">
 
         <div class="text-center small text-muted">
-            &copy; 2026 Presto.it
+            {{ __('footer.copyright') }}
         </div>
 
     </div>

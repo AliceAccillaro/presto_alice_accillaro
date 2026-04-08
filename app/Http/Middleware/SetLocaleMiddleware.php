@@ -4,16 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\App;
+use Symfony\Component\HttpFoundation\Response;
 
 class SetLocaleMiddleware
 {
-   
     public function handle(Request $request, Closure $next): Response
     {
-        $localeLanguage = session('locale', 'it');
-        App::setLocale($localeLanguage);
+        $locale = session('locale', config('app.locale'));
+
+        if (!in_array($locale, ['it', 'en', 'es'])) {
+            $locale = config('app.locale');
+        }
+
+        App::setLocale($locale);
+
         return $next($request);
     }
 }

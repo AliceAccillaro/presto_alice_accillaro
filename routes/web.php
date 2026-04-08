@@ -20,21 +20,27 @@ Route::get('/show/article/{article}', [ArticleController::class, 'show'])
 Route::get('/category/{category}', [ArticleController::class, 'byCategory'])
     ->name('byCategory');
 
-Route::get('/revisor/index', [RevisorController::class, 'index'])
-    ->middleware('isRevisor')
-    ->name('revisor.index');
-
-Route::patch('/accept/{article}', [RevisorController::class, 'accept'])
-    ->name('accept');
-
-Route::patch('/reject/{article}', [RevisorController::class, 'reject'])
-    ->name('reject');
-
-Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])
-    ->middleware('auth')
-    ->name('become.revisor');
-
-Route::get('/make/revisor/{user}', [RevisorController::class, 'makeRevisor'])
-    ->name('make.revisor');
 Route::get('/lingua/{lang}', [PublicController::class, 'setLanguage'])
     ->name('setLocale');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/lavora-con-noi', [RevisorController::class, 'workWithUs'])
+        ->name('work.with.us');
+
+    Route::post('/lavora-con-noi', [RevisorController::class, 'sendRevisorRequest'])
+        ->name('send.revisor.request');
+});
+
+Route::middleware(['auth', 'isRevisor'])->group(function () {
+    Route::get('/revisor/index', [RevisorController::class, 'index'])
+        ->name('revisor.index');
+
+    Route::patch('/accept/{article}', [RevisorController::class, 'accept'])
+        ->name('accept');
+
+    Route::patch('/reject/{article}', [RevisorController::class, 'reject'])
+        ->name('reject');
+
+    Route::patch('/revisor/undo', [RevisorController::class, 'undoLastAction'])
+        ->name('revisor.undo');
+});

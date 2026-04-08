@@ -1,84 +1,114 @@
-@if (session()->has('message'))
-    <div class="alert alert-success text-center">
-        {{ session('message') }}
-    </div>
-@endif
-
-<form class="bg-body-tertiary shadow rounded p-5 my-5" wire:submit.prevent="save">
-
-    <div class="mb-3">
-        <label class="form-label">Titolo:</label>
-        <input type="text" class="form-control" wire:model="title">
-        @error('title')
-            <p class="fst-italic text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Descrizione:</label>
-        <textarea class="form-control" wire:model="description"></textarea>    
-        @error('description')
-            <p class="fst-italic text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Prezzo:</label>
-        <input type="text" class="form-control" wire:model="price">
-        @error('price')
-            <p class="fst-italic text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
-    <div class="mb-3">
-        <select class="form-select" wire:model="category">
-            <option disabled selected>Seleziona una categoria</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-        @error('category')
-            <p class="fst-italic text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Immagini:</label>
-        <input 
-            type="file" 
-            wire:model="temporary_images" 
-            multiple
-            class="form-control shadow @error('temporary_images.*') is-invalid @enderror"
-        >
-
-        @error('temporary_images.*')
-            <p class="fst-italic text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
-    @if (!empty($temporary_images))
-        <div class="row">
-            <div class="col-12">
-                <p>Photo preview:</p>
-
-                <div class="row border border-success rounded shadow py-4">
-                    @foreach ($temporary_images as $key => $image)
-                        <div class="col d-flex flex-column align-items-center my-3">
-                            <div 
-                                class="img-preview mx-auto shadow rounded"
-                                style="width:120px; height:120px; background-size:cover; background-position:center; background-image: url('{{ $image->temporaryUrl() }}');">
-                            </div>
-                            <button type="button" class="btn btn-sm btn-danger mt-2" wire:click="removeImage({{ $key }})">X</button>
-                        </div>
-                    @endforeach
-                </div>
-
-            </div>
+<div>
+    @if (session()->has('message'))
+        <div class="alert alert-success text-center rounded-pill shadow-sm mb-4">
+            {{ session('message') }}
         </div>
     @endif
 
-    <div class="d-flex justify-content-end mt-4">
-        <button type="submit" class="btn btn-dark">Crea</button>
-    </div>
+    <section class="create-article-section">
+        <form class="create-article-card" wire:submit.prevent="save">
 
-</form>
+            <div class="create-article-header text-center">
+                <div class="home-hero-badge mb-4">
+                    <span class="home-hero-badge-dot"></span>
+                    {{ __('createArticle.badge') }}
+                </div>
+
+                <h1 class="create-article-title">{{ __('createArticle.title') }}</h1>
+
+                <p class="create-article-subtitle">
+                    {{ __('createArticle.subtitle') }}
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <label class="create-article-label">{{ __('createArticle.formTitle') }}</label>
+                <input type="text" class="create-article-input" wire:model="title">
+
+                @error('title')
+                    <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="create-article-label">{{ __('createArticle.formDescription') }}</label>
+                <textarea class="create-article-textarea" rows="5" wire:model="description"></textarea>
+
+                @error('description')
+                    <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="create-article-label">{{ __('createArticle.formPrice') }}</label>
+                <input type="text" class="create-article-input" wire:model="price">
+
+                @error('price')
+                    <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="create-article-label">{{ __('createArticle.formCategory') }}</label>
+                <select class="create-article-select" wire:model="category">
+                    <option value="" disabled selected>{{ __('createArticle.selectCategory') }}</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+
+                @error('category')
+                    <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label class="create-article-label">{{ __('createArticle.formImages') }}</label>
+                <input
+                    type="file"
+                    wire:model="temporary_images"
+                    multiple
+                    class="create-article-input @error('temporary_images.*') is-invalid @enderror"
+                >
+
+                @error('temporary_images.*')
+                    <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                @enderror
+            </div>
+
+            @if (!empty($temporary_images))
+                <div class="mb-4">
+                    <p class="create-article-preview-title">{{ __('createArticle.previewTitle') }}</p>
+
+                    <div class="create-article-preview-box">
+                        <div class="row">
+                            @foreach ($temporary_images as $key => $image)
+                                <div class="col-6 col-md-4 col-lg-3 d-flex flex-column align-items-center my-3">
+                                    <div
+                                        class="img-preview"
+                                        style="background-image: url('{{ $image->temporaryUrl() }}');">
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        class="home-button home-button-secondary mt-3 py-2 px-3"
+                                        wire:click="removeImage({{ $key }})"
+                                    >
+                                        {{ __('createArticle.removeImage') }}
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="home-button home-button-primary border-0">
+                    {{ __('createArticle.submit') }}
+                </button>
+            </div>
+
+        </form>
+    </section>
+</div>

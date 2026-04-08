@@ -1,38 +1,44 @@
 <nav class="site-navbar-wrapper">
     <div class="container">
-        <nav class="site-navbar navbar navbar-expand-lg">
+        <nav class="site-navbar navbar navbar-expand-xl">
 
-            <a class="site-navbar-brand" href="{{ route('home') }}">
+            <a class="site-navbar-brand flex-shrink-0" href="{{ route('home') }}">
                 <span class="site-navbar-brand-icon">
                     <img src="{{ asset('images/presto-logo.png') }}" alt="Presto Logo" class="site-navbar-brand-logo">
                 </span>
                 <span class="nav-text-presto">PRESTO!</span>
             </a>
 
-            <button class="navbar-toggler site-navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#siteNavbarContent">
+            <button
+                class="navbar-toggler site-navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#siteNavbarContent"
+                aria-controls="siteNavbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="siteNavbarContent">
+            <div class="collapse navbar-collapse mt-3 mt-xl-0" id="siteNavbarContent">
 
-                <ul class="navbar-nav mx-auto site-navbar-links">
+                <ul class="navbar-nav align-items-xl-center gap-xl-2 mx-xl-4 mb-3 mb-xl-0">
 
                     <li class="nav-item">
-                        <a class="nav-link site-navbar-link" href="{{ route('home') }}">
+                        <a class="nav-link site-navbar-link text-nowrap" href="{{ route('home') }}">
                             {{ __('navbar.home') }}
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle site-navbar-link" href="#" role="button"
-                            data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle site-navbar-link text-nowrap" href="#" role="button" data-bs-toggle="dropdown">
                             {{ __('navbar.categories') }}
                         </a>
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('home') }}">
+                                <a class="dropdown-item" href="{{ route('article.index') }}">
                                     {{ __('navbar.allCategories') }}
                                 </a>
                             </li>
@@ -55,11 +61,23 @@
 
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link site-navbar-link" href="{{ route('create.article') }}">
+                            <a class="nav-link site-navbar-link text-nowrap" href="{{ route('create.article') }}">
                                 {{ __('navbar.createArticle') }}
                             </a>
                         </li>
                     @endauth
+
+                    <li class="nav-item">
+                        @auth
+                            <a class="nav-link site-navbar-link text-nowrap" href="{{ route('work.with.us') }}">
+                                {{ __('navbar.workWithUs') }}
+                            </a>
+                        @else
+                            <a class="nav-link site-navbar-link text-nowrap" href="{{ route('login') }}">
+                                {{ __('navbar.workWithUs') }}
+                            </a>
+                        @endauth
+                    </li>
 
                 </ul>
 
@@ -67,32 +85,43 @@
                     $currentCategory = request()->route('category');
                 @endphp
 
-                <form action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
-                    method="GET" class="d-flex align-items-center me-3">
-                    <input type="text" name="q" class="form-control me-2 search-bord"
-                        placeholder="{{ __('navbar.searchPlaceholder') }}" value="{{ request('q') }}">
-                    <button type="submit" class="site-navbar-button-register ">
-                        {{ __('navbar.search') }}
-                    </button>
-                </form>
+                <div class="d-xl-flex align-items-xl-center ms-xl-auto gap-3 w-100 justify-content-xl-end">
 
-                <div class="site-navbar-actions d-flex align-items-center gap-3">
+                    <form
+                        action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
+                        method="GET"
+                        class="d-flex align-items-center flex-grow-1 flex-xl-grow-0 mb-3 mb-xl-0"
+                        style="max-width: 340px; width: 100%;"
+                    >
+                        <input
+                            type="text"
+                            name="q"
+                            class="form-control me-2 search-bord"
+                            placeholder="{{ __('navbar.searchPlaceholder') }}"
+                            value="{{ request('q') }}"
+                        >
+                        <button type="submit" class="site-navbar-button-register flex-shrink-0">
+                            {{ __('navbar.search') }}
+                        </button>
+                    </form>
 
-                    <a href="{{ route('setLocale', 'it') }}">
-                        <x-flag-language-it class="locale-flag" />
-                    </a>
+                    <div class="d-flex align-items-center gap-3 mb-3 mb-xl-0">
+                        <a href="{{ route('setLocale', 'it') }}" class="text-decoration-none">
+                            <x-flag-language-it class="locale-flag" />
+                        </a>
 
-                    <a href="{{ route('setLocale', 'en') }}">
-                        <x-flag-language-en class="locale-flag" />
-                    </a>
+                        <a href="{{ route('setLocale', 'en') }}" class="text-decoration-none">
+                            <x-flag-language-en class="locale-flag" />
+                        </a>
 
-                    <a href="{{ route('setLocale', 'es') }}">
-                        <x-flag-language-es class="locale-flag" />
-                    </a>
+                        <a href="{{ route('setLocale', 'es') }}" class="text-decoration-none">
+                            <x-flag-language-es class="locale-flag" />
+                        </a>
+                    </div>
 
                     @auth
                         <div class="dropdown">
-                            <a class="site-navbar-user dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <a class="site-navbar-user dropdown-toggle text-nowrap" href="#" data-bs-toggle="dropdown">
                                 <i class="fas fa-user-circle me-1"></i>
                                 {{ Auth::user()->name }}
                             </a>
@@ -117,6 +146,7 @@
                                             </span>
                                         </a>
                                     </li>
+
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -134,10 +164,11 @@
                         </div>
                     @else
                         <div class="site-navbar-buttons">
-                            <a class="home-button home-button-secondary" href="{{ route('login') }}">
+                            <a class="home-button home-button-secondary text-nowrap" href="{{ route('login') }}">
                                 {{ __('navbar.login') }}
                             </a>
-                            <a class="home-button home-button-primary" href="{{ route('register') }}">
+
+                            <a class="home-button home-button-primary text-nowrap" href="{{ route('register') }}">
                                 {{ __('navbar.register') }}
                             </a>
                         </div>

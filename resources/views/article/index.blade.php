@@ -1,25 +1,47 @@
 <x-layout>
-    <div class="container-fluid">
-        <div class="row height-custom justify-content-center align-items-center text-center">
-            <div class="col-12">
-                <h1 class="display-1">Tutti gli articoli</h1>
+    <section class="container my-5">
+
+        <div class="text-center mb-5">
+            <div class="home-hero-badge mb-3">
+                <span class="home-hero-badge-dot"></span>
+                {{ __('index.catalog') }}
             </div>
+
+            <h1 class="home-hero-title">
+                {{ __('index.title') }}
+            </h1>
         </div>
-        <div class="row height-custom justify-content-center align-items-center py-5">
+
+        <div class="row g-4">
             @forelse ($articles as $article)
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-lg-4">
                     <x-card :article="$article" />
                 </div>
             @empty
                 <div class="col-12">
-                    <h3 class="text-center">Non sono ancora stati creati articoli</h3>
+                    <div class="text-center py-5">
+
+                        <div class="home-hero-badge mb-3">
+                            <span class="home-hero-badge-dot"></span>
+                            {{ __('index.noArticles') }}
+                        </div>
+
+                        <h2 class="mb-3">
+                            {{ __('index.noArticles') }}
+                        </h2>
+
+                        <a href="{{ route('home') }}" class="home-button home-button-primary">
+                            {{ __('navbar.home') }}
+                        </a>
+
+                    </div>
                 </div>
             @endforelse
         </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div>
+
+        <div class="mt-5 d-flex justify-content-center">
             {{ $articles->links() }}
         </div>
-    </div>
+
+    </section>
 </x-layout>
