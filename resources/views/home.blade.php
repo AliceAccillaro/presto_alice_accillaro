@@ -104,7 +104,7 @@
                                 {{ Str::limit($article->description, 100) }}
                             </p>
 
-                            <p class="fw-bold mb-3">{{ $article->price }} €</p>
+                            <p class="fw-bold mb-3">{{ $article->price }} euro</p>
 
                             <a href="{{ route('article.show', $article) }}" class="home-button home-button-primary">
                                 {{ __('home.detail') }}

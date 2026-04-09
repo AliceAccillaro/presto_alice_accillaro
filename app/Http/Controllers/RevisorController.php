@@ -12,7 +12,8 @@ class RevisorController extends Controller
 {
     public function index()
     {
-        $article_to_check = Article::whereNull('is_accepted')
+        $article_to_check = Article::with(['category', 'user', 'images'])
+            ->whereNull('is_accepted')
             ->orderBy('created_at', 'asc')
             ->first();
 
@@ -55,7 +56,7 @@ class RevisorController extends Controller
         );
 
         return redirect()->route('work.with.us')
-            ->with('message', 'Richiesta inviata con successo.');
+            ->with('success', 'Richiesta inviata con successo.');
     }
 
     public function undoLastAction()

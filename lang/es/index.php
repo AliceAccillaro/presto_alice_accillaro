@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Todos los artículos',
-    'noArticles' => 'Aún no se han creado artículos',
-    'catalog' => 'Catálogo',
+    'title' => 'Todos los articulos',
+    'noArticles' => 'Aun no se han creado articulos',
+    'catalog' => 'Catalogo',
 ];

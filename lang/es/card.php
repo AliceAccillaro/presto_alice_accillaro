@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'noCategory' => 'Sin categoría',
+    'noCategory' => 'Sin categoria',
     'detail' => 'Detalle',
 ];

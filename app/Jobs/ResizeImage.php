@@ -4,6 +4,8 @@ namespace App\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Spatie\Image\Enums\AlignPosition;
+use Spatie\Image\Enums\ImageDriver as SpatieImageDriver;
 use Spatie\Image\Image;
 
 class ResizeImage implements ShouldQueue
@@ -22,12 +24,23 @@ class ResizeImage implements ShouldQueue
 
     public function handle(): void
     {
-        $w = $this->w;
         $srcPath = storage_path('app/public/' . $this->path . '/' . $this->fileName);
-        $destPath = storage_path('app/public/' . $this->path . "/crop_{$this->w}x{$this->h}_" . $this->fileName);
+        $prefix = $this->h
+            ? "crop_{$this->w}x{$this->h}_"
+            : "crop_{$this->w}_";
+        $destPath = storage_path('app/public/' . $this->path . '/' . $prefix . $this->fileName);
 
-        Image::load($srcPath)
-        ->width($w)
-        ->save($destPath);
+        $image = Image::useImageDriver(SpatieImageDriver::Imagick)->loadFile($srcPath);
+
+        if ($this->h) {
+            $image
+                ->width($this->w)
+                ->height($this->h)
+                ->resizeCanvas($this->w, $this->h, AlignPosition::Center, false, '#ffffff');
+        } else {
+            $image->width($this->w);
+        }
+
+        $image->save($destPath);
     }
 }

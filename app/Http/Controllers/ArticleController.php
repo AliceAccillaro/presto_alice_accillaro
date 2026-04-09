@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -41,6 +42,12 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $article->load(['category', 'user', 'images']);
+
+        $canViewPendingArticle = Auth::check()
+            && (Auth::user()->is_revisor || Auth::id() === $article->user_id);
+
+        abort_if(!$article->is_accepted && !$canViewPendingArticle, 404);
+
         return view('article.show', compact('article'));
     }
 

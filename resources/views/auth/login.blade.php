@@ -6,9 +6,9 @@
                     <div class="auth-card">
 
                         <div class="auth-header">
-                            <h1 class="auth-title">Accedi</h1>
+                            <h1 class="auth-title">{{ __('auth.login_title') }}</h1>
                             <p class="auth-subtitle">
-                                Inserisci le tue credenziali per accedere alla piattaforma.
+                                {{ __('auth.login_subtitle') }}
                             </p>
                         </div>
 
@@ -20,7 +20,7 @@
                                     type="email"
                                     name="email"
                                     class="form-control"
-                                    placeholder="Email"
+                                    placeholder="{{ __('auth.email') }}"
                                     value="{{ old('email') }}"
                                     required
                                 >
@@ -31,7 +31,7 @@
                                     type="password"
                                     name="password"
                                     class="form-control"
-                                    placeholder="Password"
+                                    placeholder="{{ __('auth.password') }}"
                                     required
                                 >
                             </div>
@@ -43,14 +43,14 @@
                             @endif
 
                             <button type="submit" class="home-button home-button-primary w-100">
-                                Accedi
+                                {{ __('auth.login_button') }}
                             </button>
                         </form>
 
                         <div class="auth-footer">
                             <p>
-                                Non hai un account?
-                                <a href="{{ route('register') }}">Registrati</a>
+                                {{ __('auth.no_account') }}
+                                <a href="{{ route('register') }}">{{ __('auth.register_link') }}</a>
                             </p>
                         </div>
 

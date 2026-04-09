@@ -2,16 +2,13 @@
 
 return [
     'title' => 'Presto.it',
-    'description' => 'Compra y vende de forma fácil y rápida.',
-    
-    'usefulLinks' => 'Enlaces útiles',
+    'description' => 'Compra y vende de forma facil y rapida.',
+    'usefulLinks' => 'Enlaces utiles',
     'home' => 'Inicio',
-    'categories' => 'Categorías',
+    'categories' => 'Categorias',
     'contacts' => 'Contactos',
-
     'becomeRevisor' => 'Hazte revisor',
-    'revisorDescription' => 'Ayúdanos a moderar los artículos',
+    'revisorDescription' => 'Ayudanos a moderar los articulos',
     'revisorButton' => 'Hazte Revisor',
-
-    'copyright' => '© 2026 Presto.it',
+    'copyright' => '(c) 2026 Presto.it',
 ];

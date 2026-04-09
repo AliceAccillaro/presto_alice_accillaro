@@ -1,4 +1,8 @@
 <nav class="site-navbar-wrapper">
+    @php
+        $categories = $categories ?? collect();
+    @endphp
+
     <div class="container">
         <nav class="site-navbar navbar navbar-expand-xl">
 

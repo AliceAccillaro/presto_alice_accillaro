@@ -25,6 +25,12 @@
                             </div>
                         @endif
 
+                        @if (session('success'))
+                            <div class="alert alert-success text-center">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         @if (session('error'))
                             <div class="alert alert-danger text-center">
                                 {{ session('error') }}
@@ -33,7 +39,7 @@
 
                         @if (Auth::user()->is_revisor)
                             <div class="text-center py-3">
-                                <h4 class="mb-3 text-success">Sei già un revisore ✔</h4>
+                                <h4 class="mb-3 text-success">Sei gia un revisore</h4>
                                 <p class="text-muted mb-4">
                                     Puoi accedere direttamente alla dashboard revisori.
                                 </p>
@@ -58,7 +64,7 @@
 
                                 <div class="mb-4">
                                     <label for="message" class="form-label fw-semibold">
-                                        Perché vuoi diventare revisore?
+                                        Perche vuoi diventare revisore?
                                     </label>
 
                                     <textarea

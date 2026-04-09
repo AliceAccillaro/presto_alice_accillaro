@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'detailTitle' => 'Detalle del artículo',
-    'title' => 'Título',
+    'detailTitle' => 'Detalle del articulo',
+    'title' => 'Titulo',
     'price' => 'Precio',
-    'description' => 'Descripción',
-    'noImages' => 'No hay imágenes disponibles',
+    'description' => 'Descripcion',
+    'noImages' => 'No hay imagenes disponibles',
 ];

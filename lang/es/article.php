@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'category' => 'Categoría',
+    'category' => 'Categoria',
     'resultsFor' => 'Resultados para',
-    'noArticles' => 'No se encontraron artículos',
-    'noArticlesDesc' => 'Intenta cambiar la búsqueda o vuelve a la página principal.',
+    'noArticles' => 'No se encontraron articulos',
+    'noArticlesDesc' => 'Intenta cambiar la busqueda o vuelve a la pagina principal.',
     'backHome' => 'Volver al inicio',
 ];

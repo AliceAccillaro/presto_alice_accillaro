@@ -2,15 +2,15 @@
 
 return [
     'home' => 'Inicio',
-    'categories' => 'Categorías',
-    'allCategories' => 'Todas las categorías',
-    'noCategories' => 'No hay categorías disponibles',
+    'categories' => 'Categorias',
+    'allCategories' => 'Todas las categorias',
+    'noCategories' => 'No hay categorias disponibles',
     'createArticle' => 'Publicar',
     'workWithUs' => 'Trabaja con nosotros',
-    'searchPlaceholder' => 'Buscar artículos...',
+    'searchPlaceholder' => 'Buscar articulos...',
     'search' => 'Buscar',
     'revisorZone' => 'Zona Revisor',
-    'logout' => 'Cerrar sesión',
+    'logout' => 'Cerrar sesion',
     'login' => 'Acceder',
     'register' => 'Registrarse',
 ];

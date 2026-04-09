@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function home(Request $request)
     {
-        $articles = Article::with('category')
+        $articles = Article::with(['category', 'images'])
             ->where('is_accepted', true)
             ->when($request->filled('q'), function ($query) use ($request) {
                 $search = trim($request->q);
@@ -33,13 +33,13 @@ class PublicController extends Controller
     }
 
     public function setLanguage($lang)
-{
-    if (!in_array($lang, ['it', 'en', 'es'])) {
-        abort(400);
+    {
+        if (!in_array($lang, ['it', 'en', 'es'])) {
+            abort(400);
+        }
+
+        session(['locale' => $lang]);
+
+        return redirect()->back();
     }
-
-    session(['locale' => $lang]);
-
-    return redirect()->back();
-}
 }

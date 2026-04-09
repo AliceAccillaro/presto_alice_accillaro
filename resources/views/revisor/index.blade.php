@@ -99,7 +99,7 @@
                             </p>
 
                             <div class="revisor-price">
-                                {{ $article_to_check->price }} €
+                                {{ $article_to_check->price }} euro
                             </div>
 
                             <div class="revisor-description-box">
@@ -137,7 +137,7 @@
                     <span class="revisor-badge">Tutto aggiornato</span>
                     <h2 class="revisor-empty-title">Nessun articolo da revisionare</h2>
                     <p class="revisor-empty-text">
-                        Al momento non ci sono articoli in attesa. Torna più tardi oppure rientra in homepage.
+                        Al momento non ci sono articoli in attesa. Torna piu tardi oppure rientra in homepage.
                     </p>
                     <a href="{{ route('home') }}" class="home-button home-button-primary">
                         Torna all'homepage

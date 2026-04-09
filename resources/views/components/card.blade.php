@@ -20,7 +20,7 @@
         </p>
 
         <p class="article-card-price mb-3">
-            {{ $article->price }} €
+            {{ $article->price }} euro
         </p>
 
         <div class="mt-auto">

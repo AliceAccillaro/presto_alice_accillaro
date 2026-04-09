@@ -2,9 +2,9 @@
 
 return [
     'hello' => 'Hola',
-    'allArticles' => 'Todos los artículos',
+    'allArticles' => 'Todos los articulos',
     'welcome' => 'Bienvenido',
-    'createArticle' => 'Crear artículo',
-    'login' => 'Iniciar sesión',
+    'createArticle' => 'Crear articulo',
+    'login' => 'Iniciar sesion',
     'register' => 'Registrarse',
 ];

@@ -59,7 +59,7 @@
                     </h2>
 
                     <p class="mb-3 fw-bold">
-                        {{ __('show.price') }}: {{ $article->price }} €
+                        {{ __('show.price') }}: {{ $article->price }} euro
                     </p>
 
                     <div class="mb-4">
@@ -73,7 +73,7 @@
                     </div>
 
                     <a href="{{ route('home') }}" class="home-button home-button-secondary">
-                        ← Home
+                        Torna alla home
                     </a>
 
                 </div>

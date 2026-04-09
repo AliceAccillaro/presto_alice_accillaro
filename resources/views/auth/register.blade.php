@@ -7,9 +7,9 @@
                     <div class="auth-card">
 
                         <div class="auth-header">
-                            <h1 class="auth-title">Crea un account</h1>
+                            <h1 class="auth-title">{{ __('auth.register_title') }}</h1>
                             <p class="auth-subtitle">
-                                Inizia subito a vendere i tuoi prodotti in modo semplice e veloce.
+                                {{ __('auth.register_subtitle') }}
                             </p>
                         </div>
 
@@ -21,7 +21,7 @@
                                     type="text"
                                     name="name"
                                     class="form-control"
-                                    placeholder="Nome"
+                                    placeholder="{{ __('auth.name') }}"
                                     value="{{ old('name') }}"
                                     required
                                 >
@@ -32,7 +32,7 @@
                                     type="email"
                                     name="email"
                                     class="form-control"
-                                    placeholder="Email"
+                                    placeholder="{{ __('auth.email') }}"
                                     value="{{ old('email') }}"
                                     required
                                 >
@@ -43,7 +43,7 @@
                                     type="password"
                                     name="password"
                                     class="form-control"
-                                    placeholder="Password"
+                                    placeholder="{{ __('auth.password') }}"
                                     required
                                 >
                             </div>
@@ -53,7 +53,7 @@
                                     type="password"
                                     name="password_confirmation"
                                     class="form-control"
-                                    placeholder="Conferma password"
+                                    placeholder="{{ __('auth.password_confirmation') }}"
                                     required
                                 >
                             </div>
@@ -69,14 +69,14 @@
                             @endif
 
                             <button type="submit" class="home-button home-button-primary w-100">
-                                Registrati
+                                {{ __('auth.register_button') }}
                             </button>
                         </form>
 
                         <div class="auth-footer">
                             <p>
-                                Hai già un account?
-                                <a href="{{ route('login') }}">Accedi</a>
+                                {{ __('auth.already_account') }}
+                                <a href="{{ route('login') }}">{{ __('auth.login_link') }}</a>
                             </p>
                         </div>
 

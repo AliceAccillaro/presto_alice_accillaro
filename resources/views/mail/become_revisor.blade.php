@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -10,12 +10,12 @@
 
 <body>
     <div>
-    <h1>Un utente ha chiesto di lavorare con noi</h1>
-    <h2>Ecco i suoi dati:</h2>
-    <p><strong>Nome:</strong> {{ $user->name }}</p>
-    <p><strong>Email:</strong> {{ $user->email }}</p>
-    <p>Se vuoi renderlo revisore, clicca qui:</p>
-    <a href="{{ route('make.revisor', compact('user')) }}">Rendi revisore</a>
+        <h1>Un utente ha chiesto di lavorare con noi</h1>
+        <h2>Ecco i suoi dati:</h2>
+        <p><strong>Nome:</strong> {{ $user->name }}</p>
+        <p><strong>Email:</strong> {{ $user->email }}</p>
+        <p><strong>Messaggio:</strong> {{ $requestMessage }}</p>
+        <p>Per renderlo revisore puoi usare il comando artisan con la sua email.</p>
     </div>
 </body>
 
