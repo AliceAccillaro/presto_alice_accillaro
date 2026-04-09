@@ -13,4 +13,5 @@ return [
     'logout' => 'Logout',
     'login' => 'Login',
     'register' => 'Register',
+    'toggle_navigation' => 'Open navigation',
 ];

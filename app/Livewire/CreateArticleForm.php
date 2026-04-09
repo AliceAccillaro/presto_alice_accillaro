@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GoogleVisionSafeSearch;
 use App\Jobs\ResizeImage;
+use App\Jobs\GoogleVisionLabelImage;
 use Livewire\Component;
 use App\Models\Article;
 use App\Models\Category;
@@ -56,6 +58,8 @@ class CreateArticleForm extends Component
                 $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
                 
                 dispatch(new ResizeImage($newImage->path, 600, 400));
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                dispatch(new GoogleVisionLabelImage($newImage->id));
             }
             File::deleteDirectory(storage_path('/app/livewire-tmp'));
         }

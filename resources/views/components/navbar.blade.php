@@ -20,7 +20,7 @@
                 data-bs-target="#siteNavbarContent"
                 aria-controls="siteNavbarContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation"
+                aria-label="{{ __('navbar.toggle_navigation') }}"
             >
                 <span class="navbar-toggler-icon"></span>
             </button>

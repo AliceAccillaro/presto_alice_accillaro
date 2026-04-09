@@ -10,12 +10,12 @@
 
 <body>
     <div>
-        <h1>Un utente ha chiesto di lavorare con noi</h1>
-        <h2>Ecco i suoi dati:</h2>
-        <p><strong>Nome:</strong> {{ $user->name }}</p>
-        <p><strong>Email:</strong> {{ $user->email }}</p>
-        <p><strong>Messaggio:</strong> {{ $requestMessage }}</p>
-        <p>Per renderlo revisore puoi usare il comando artisan con la sua email.</p>
+        <h1>{{ __('revisor.mail_title') }}</h1>
+        <h2>{{ __('revisor.mail_subtitle') }}</h2>
+        <p><strong>{{ __('revisor.mail_name') }}:</strong> {{ $user->name }}</p>
+        <p><strong>{{ __('revisor.mail_email') }}:</strong> {{ $user->email }}</p>
+        <p><strong>{{ __('revisor.mail_message') }}:</strong> {{ $requestMessage }}</p>
+        <p>{{ __('revisor.mail_instruction') }}</p>
     </div>
 </body>
 

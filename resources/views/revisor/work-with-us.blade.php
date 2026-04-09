@@ -9,13 +9,13 @@
                         <div class="auth-header text-center">
                             <div class="home-hero-badge mb-4">
                                 <span class="home-hero-badge-dot"></span>
-                                Collabora con Presto
+                                {{ __('revisor.work_badge') }}
                             </div>
 
-                            <h1 class="auth-title">Lavora con noi</h1>
+                            <h1 class="auth-title">{{ __('revisor.work_title') }}</h1>
 
                             <p class="auth-subtitle">
-                                Vuoi collaborare con il team Presto come revisore? Inviaci la tua richiesta.
+                                {{ __('revisor.work_subtitle') }}
                             </p>
                         </div>
 
@@ -39,13 +39,13 @@
 
                         @if (Auth::user()->is_revisor)
                             <div class="text-center py-3">
-                                <h4 class="mb-3 text-success">Sei gia un revisore</h4>
+                                <h4 class="mb-3 text-success">{{ __('revisor.already_revisor') }}</h4>
                                 <p class="text-muted mb-4">
-                                    Puoi accedere direttamente alla dashboard revisori.
+                                    {{ __('revisor.dashboard_subtitle') }}
                                 </p>
 
                                 <a href="{{ route('revisor.index') }}" class="home-button home-button-primary">
-                                    Vai alla dashboard
+                                    {{ __('revisor.go_dashboard') }}
                                 </a>
                             </div>
                         @else
@@ -53,18 +53,18 @@
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Nome utente</label>
+                                    <label class="form-label fw-semibold">{{ __('revisor.username') }}</label>
                                     <input type="text" value="{{ Auth::user()->name }}" disabled>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Email</label>
+                                    <label class="form-label fw-semibold">{{ __('revisor.email') }}</label>
                                     <input type="email" value="{{ Auth::user()->email }}" disabled>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="message" class="form-label fw-semibold">
-                                        Perche vuoi diventare revisore?
+                                        {{ __('revisor.why_revisor') }}
                                     </label>
 
                                     <textarea
@@ -72,7 +72,7 @@
                                         id="message"
                                         rows="5"
                                         class="form-control @error('message') is-invalid @enderror"
-                                        placeholder="Scrivi qui la tua motivazione..."
+                                        placeholder="{{ __('revisor.message_placeholder') }}"
                                     >{{ old('message') }}</textarea>
 
                                     @error('message')
@@ -84,7 +84,7 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="home-button home-button-primary border-0">
-                                        Invia richiesta
+                                        {{ __('revisor.send_request') }}
                                     </button>
                                 </div>
                             </form>
