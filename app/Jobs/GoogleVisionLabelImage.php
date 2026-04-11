@@ -37,7 +37,16 @@ class GoogleVisionLabelImage implements ShouldQueue
         }
 
         $image = file_get_contents(storage_path('app/public/' . $i->path));
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credentials.json'));
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credential.json'));
+        putenv('SSL_CERT_FILE=C:\php\8.4\cacert.pem');
+        putenv('HTTP_PROXY');
+        putenv('HTTPS_PROXY');
+        putenv('ALL_PROXY');
+        putenv('http_proxy');
+        putenv('https_proxy');
+        putenv('all_proxy');
+        ini_set('curl.cainfo', 'C:\php\8.4\cacert.pem');
+        ini_set('openssl.cafile', 'C:\php\8.4\cacert.pem');
 
         $googleVisionClient = new ImageAnnotatorClient();
         $google_image = new VisionImage([
