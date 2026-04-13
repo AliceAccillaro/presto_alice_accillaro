@@ -74,6 +74,11 @@
                 @error('temporary_images.*')
                     <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
                 @enderror
+
+                <div class="create-article-upload-notice" wire:loading wire:target="temporary_images">
+                    <span class="create-article-upload-spinner" aria-hidden="true"></span>
+                    <span>Caricamento immagini in corso: attendi la comparsa dell'anteprima prima di creare l'articolo.</span>
+                </div>
             </div>
 
             @if (!empty($temporary_images))
@@ -81,9 +86,9 @@
                     <p class="create-article-preview-title">{{ __('createArticle.previewTitle') }}</p>
 
                     <div class="create-article-preview-box">
-                        <div class="row">
+                        <div class="create-article-preview-grid">
                             @foreach ($temporary_images as $key => $image)
-                                <div class="col-6 col-md-4 col-lg-3 d-flex flex-column align-items-center my-3">
+                                <div class="create-article-preview-item">
                                     <div
                                         class="img-preview"
                                         style="background-image: url('{{ $image->temporaryUrl() }}');">
@@ -104,8 +109,18 @@
             @endif
 
             <div class="d-flex justify-content-end mt-4">
-                <button type="submit" class="home-button home-button-primary border-0">
-                    {{ __('createArticle.submit') }}
+                <button
+                    type="submit"
+                    class="home-button home-button-primary border-0"
+                    wire:loading.attr="disabled"
+                    wire:target="temporary_images"
+                >
+                    <span wire:loading.remove wire:target="temporary_images">
+                        {{ __('createArticle.submit') }}
+                    </span>
+                    <span wire:loading wire:target="temporary_images">
+                        Caricamento...
+                    </span>
                 </button>
             </div>
 

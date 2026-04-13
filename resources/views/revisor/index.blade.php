@@ -216,16 +216,19 @@
                                     <label class="create-article-label" for="revisor-category">
                                         {{ __('revisor.edit_category') }}
                                     </label>
-                                    <select id="revisor-category" name="category_id" class="create-article-select">
+                                    <div id="revisor-category" class="revisor-category-picker" role="radiogroup" aria-label="{{ __('revisor.edit_category') }}">
                                         @foreach ($categories as $category)
-                                            <option
-                                                value="{{ $category->id }}"
-                                                @selected(old('category_id', $article_to_check->category_id) == $category->id)
-                                            >
-                                                {{ $category->translated_name }}
-                                            </option>
+                                            <label class="revisor-category-option">
+                                                <input
+                                                    type="radio"
+                                                    name="category_id"
+                                                    value="{{ $category->id }}"
+                                                    @checked(old('category_id', $article_to_check->category_id) == $category->id)
+                                                >
+                                                <span>{{ $category->translated_name }}</span>
+                                            </label>
                                         @endforeach
-                                    </select>
+                                    </div>
                                     @error('category_id')
                                         <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
                                     @enderror
@@ -379,20 +382,24 @@
                                             <label class="create-article-label" for="history-category-{{ $reviewed_article->id }}">
                                                 {{ __('revisor.edit_category') }}
                                             </label>
-                                            <select
+                                            <div
                                                 id="history-category-{{ $reviewed_article->id }}"
-                                                name="category_id"
-                                                class="create-article-select"
+                                                class="revisor-category-picker"
+                                                role="radiogroup"
+                                                aria-label="{{ __('revisor.edit_category') }}"
                                             >
                                                 @foreach ($categories as $category)
-                                                    <option
-                                                        value="{{ $category->id }}"
-                                                        @selected($reviewed_article->category_id == $category->id)
-                                                    >
-                                                        {{ $category->translated_name }}
-                                                    </option>
+                                                    <label class="revisor-category-option">
+                                                        <input
+                                                            type="radio"
+                                                            name="category_id"
+                                                            value="{{ $category->id }}"
+                                                            @checked($reviewed_article->category_id == $category->id)
+                                                        >
+                                                        <span>{{ $category->translated_name }}</span>
+                                                    </label>
                                                 @endforeach
-                                            </select>
+                                            </div>
                                         </div>
 
                                         <div class="mb-3">
