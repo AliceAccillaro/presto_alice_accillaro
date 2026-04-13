@@ -8,7 +8,7 @@
             </div>
 
             <h1 class="home-hero-title mb-3">
-                {{ $category->name }}
+                {{ $category->translated_name }}
             </h1>
 
             @if (request('q'))

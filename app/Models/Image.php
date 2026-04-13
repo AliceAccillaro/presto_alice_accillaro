@@ -58,10 +58,4 @@ class Image extends Model
 
         return asset('storage/' . $this->path);
     }
-    protected function casts(): array
-    {
-        return [
-            'labels' => 'array',
-        ];
-    }
 }

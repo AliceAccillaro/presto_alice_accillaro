@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\BecomeRevisor;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,28 @@ class RevisorController extends Controller
             ->orderBy('created_at', 'asc')
             ->first();
 
-        return view('revisor.index', compact('article_to_check'));
+        $categories = Category::orderBy('name')->get();
+
+        return view('revisor.index', compact('article_to_check', 'categories'));
+    }
+
+    public function update(Request $request, Article $article)
+    {
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'description' => 'required|min:10',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $article->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect()->back()->with('message', __('revisor.article_updated'));
     }
 
     public function accept(Article $article)

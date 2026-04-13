@@ -8,7 +8,7 @@
     <div class="article-card-body d-flex flex-column">
         <a href="{{ route('byCategory', ['category' => $article->category]) }}"
            class="badge_custom mb-2 align-self-start text-decoration-none">
-            {{ $article->category->name ?? __('card.noCategory') }}
+            {{ $article->category->translated_name ?? __('card.noCategory') }}
         </a>
 
         <h4 class="article-card-title">

@@ -4,7 +4,7 @@ return [
     'login_title' => 'Login',
     'login_subtitle' => 'Enter your credentials to access the platform.',
     'email' => 'Email',
-    'password' => 'Password',
+    'password_label' => 'Password',
     'login_button' => 'Login',
     'no_account' => "Don't have an account?",
     'register_link' => 'Register',
@@ -15,4 +15,7 @@ return [
     'register_button' => 'Register',
     'already_account' => 'Already have an account?',
     'login_link' => 'Login',
+    'failed' => 'These credentials do not match our records.',
+    'password' => 'The provided password is incorrect.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 ];

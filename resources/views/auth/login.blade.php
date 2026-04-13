@@ -31,7 +31,7 @@
                                     type="password"
                                     name="password"
                                     class="form-control"
-                                    placeholder="{{ __('auth.password') }}"
+                                    placeholder="{{ __('auth.password_label') }}"
                                     required
                                 >
                             </div>

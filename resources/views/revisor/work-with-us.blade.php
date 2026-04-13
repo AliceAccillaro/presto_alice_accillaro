@@ -71,7 +71,7 @@
                                         name="message"
                                         id="message"
                                         rows="5"
-                                        class="form-control @error('message') is-invalid @enderror"
+                                        class="create-article-textarea @error('message') is-invalid @enderror"
                                         placeholder="{{ __('revisor.message_placeholder') }}"
                                     >{{ old('message') }}</textarea>
 

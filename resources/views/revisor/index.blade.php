@@ -147,9 +147,18 @@
                     <div class="col-lg-5">
                         <div class="revisor-info-card">
                             <div class="revisor-meta-top">
-                                <span class="revisor-category-badge">
-                                    {{ $article_to_check->category->name }}
-                                </span>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="revisor-category-badge">
+                                        {{ $article_to_check->category->translated_name }}
+                                    </span>
+
+                                    @if ($article_to_check->updated_at && $article_to_check->updated_at->gt($article_to_check->created_at))
+                                        <span class="revisor-category-badge">
+                                            {{ __('revisor.edited_by_revisor') }}
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <span class="revisor-status-badge">
                                     {{ __('revisor.to_review') }}
                                 </span>
@@ -167,12 +176,77 @@
                                 {{ $article_to_check->price }} euro
                             </div>
 
-                            <div class="revisor-description-box">
-                                <h3 class="revisor-section-title">{{ __('revisor.description') }}</h3>
-                                <p class="revisor-description-text mb-0">
-                                    {{ $article_to_check->description }}
-                                </p>
-                            </div>
+                            <form action="{{ route('revisor.article.update', $article_to_check) }}" method="POST" class="mb-4">
+                                @csrf
+                                @method('PATCH')
+
+                                <div class="mb-3">
+                                    <label class="create-article-label" for="revisor-title">
+                                        {{ __('revisor.edit_title') }}
+                                    </label>
+                                    <input
+                                        id="revisor-title"
+                                        type="text"
+                                        name="title"
+                                        class="create-article-input"
+                                        value="{{ old('title', $article_to_check->title) }}"
+                                    >
+                                    @error('title')
+                                        <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="create-article-label" for="revisor-price">
+                                        {{ __('revisor.edit_price') }}
+                                    </label>
+                                    <input
+                                        id="revisor-price"
+                                        type="text"
+                                        name="price"
+                                        class="create-article-input"
+                                        value="{{ old('price', $article_to_check->price) }}"
+                                    >
+                                    @error('price')
+                                        <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="create-article-label" for="revisor-category">
+                                        {{ __('revisor.edit_category') }}
+                                    </label>
+                                    <select id="revisor-category" name="category_id" class="create-article-select">
+                                        @foreach ($categories as $category)
+                                            <option
+                                                value="{{ $category->id }}"
+                                                @selected(old('category_id', $article_to_check->category_id) == $category->id)
+                                            >
+                                                {{ $category->translated_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                        <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="revisor-description-box">
+                                    <h3 class="revisor-section-title">{{ __('revisor.edit_description') }}</h3>
+                                    <textarea
+                                        name="description"
+                                        class="create-article-textarea"
+                                        rows="5"
+                                    >{{ old('description', $article_to_check->description) }}</textarea>
+                                    @error('description')
+                                        <p class="fst-italic text-danger mt-2 mb-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <button class="home-button home-button-secondary w-100 mb-4" type="submit">
+                                    {{ __('revisor.save_changes') }}
+                                </button>
+                            </form>
 
                             <div class="revisor-actions">
                                 <form action="{{ route('reject', $article_to_check) }}" method="POST" class="w-100">

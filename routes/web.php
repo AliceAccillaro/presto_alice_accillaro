@@ -41,6 +41,9 @@ Route::middleware(['auth', 'isRevisor'])->group(function () {
     Route::patch('/reject/{article}', [RevisorController::class, 'reject'])
         ->name('reject');
 
+    Route::patch('/revisor/article/{article}', [RevisorController::class, 'update'])
+        ->name('revisor.article.update');
+
     Route::patch('/revisor/undo', [RevisorController::class, 'undoLastAction'])
         ->name('revisor.undo');
 });

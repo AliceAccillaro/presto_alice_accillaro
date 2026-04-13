@@ -3,7 +3,7 @@
         $categories = $categories ?? collect();
     @endphp
 
-    <div class="container">
+    <div class="site-navbar-container container-fluid">
         <nav class="site-navbar navbar navbar-expand-xl">
 
             <a class="site-navbar-brand flex-shrink-0" href="{{ route('home') }}">
@@ -50,7 +50,7 @@
                             @forelse ($categories as $category)
                                 <li>
                                     <a class="dropdown-item" href="{{ route('byCategory', $category) }}">
-                                        {{ $category->name }}
+                                        {{ $category->translated_name }}
                                     </a>
                                 </li>
                             @empty
@@ -94,13 +94,12 @@
                     <form
                         action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
                         method="GET"
-                        class="d-flex align-items-center flex-grow-1 flex-xl-grow-0 mb-3 mb-xl-0"
-                        style="max-width: 340px; width: 100%;"
+                        class="site-navbar-search-form d-flex align-items-center flex-grow-1 flex-xl-grow-0 mb-3 mb-xl-0"
                     >
                         <input
                             type="text"
                             name="q"
-                            class="form-control me-2 search-bord"
+                            class="form-control me-2 search-bord site-navbar-search-input"
                             placeholder="{{ __('navbar.searchPlaceholder') }}"
                             value="{{ request('q') }}"
                         >

@@ -95,7 +95,7 @@
 
                         <div class="card-body d-flex flex-column">
                             <span class="badge_custom mb-2 align-self-start">
-                                {{ $article->category->name ?? __('home.noCategory') }}
+                                {{ $article->category->translated_name ?? __('home.noCategory') }}
                             </span>
 
                             <h5 class="card-title">{{ $article->title }}</h5>

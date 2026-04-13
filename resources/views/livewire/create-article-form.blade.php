@@ -53,7 +53,7 @@
                 <select class="create-article-select" wire:model="category">
                     <option value="" disabled selected>{{ __('createArticle.selectCategory') }}</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->translated_name }}</option>
                     @endforeach
                 </select>
 

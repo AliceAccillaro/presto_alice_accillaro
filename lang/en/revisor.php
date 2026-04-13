@@ -38,4 +38,11 @@ return [
     'medical' => 'Medical',
     'labels' => 'Labels',
     'no_labels' => 'No labels',
+    'edit_title' => 'Edit title',
+    'edit_price' => 'Edit price',
+    'edit_category' => 'Edit category',
+    'edit_description' => 'Edit description',
+    'save_changes' => 'Save changes',
+    'article_updated' => 'Article updated successfully.',
+    'edited_by_revisor' => 'Edited by revisor',
 ];
