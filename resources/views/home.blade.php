@@ -91,7 +91,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0">
                         <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(600, 400) : 'https://picsum.photos/200' }}"
-                            class="card-img-top product-thumb" alt="immagine dell'articolo {{ $article->title }}">
+                            class="card-img-top product-thumb" alt="{{ __('home.image_alt', ['title' => $article->title]) }}">
 
                         <div class="card-body d-flex flex-column">
                             <span class="badge_custom mb-2 align-self-start">
@@ -104,7 +104,7 @@
                                 {{ Str::limit($article->description, 100) }}
                             </p>
 
-                            <p class="fw-bold mb-3">{{ $article->price }} euro</p>
+                            <p class="fw-bold mb-3">{{ $article->price }} {{ __('home.currency') }}</p>
 
                             <a href="{{ route('article.show', $article) }}" class="home-button home-button-primary">
                                 {{ __('home.detail') }}

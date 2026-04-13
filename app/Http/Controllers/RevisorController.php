@@ -18,9 +18,15 @@ class RevisorController extends Controller
             ->orderBy('created_at', 'asc')
             ->first();
 
+        $reviewed_articles = Article::with(['category', 'user'])
+            ->whereNotNull('is_accepted')
+            ->orderBy('updated_at', 'desc')
+            ->take(8)
+            ->get();
+
         $categories = Category::orderBy('name')->get();
 
-        return view('revisor.index', compact('article_to_check', 'categories'));
+        return view('revisor.index', compact('article_to_check', 'reviewed_articles', 'categories'));
     }
 
     public function update(Request $request, Article $article)
@@ -49,7 +55,7 @@ class RevisorController extends Controller
 
         session()->put('last_article_id', $article->id);
 
-        return redirect()->back()->with('message', 'Articolo accettato con successo.');
+        return redirect()->back()->with('message', __('revisor.article_accepted'));
     }
 
     public function reject(Article $article)
@@ -59,7 +65,7 @@ class RevisorController extends Controller
 
         session()->put('last_article_id', $article->id);
 
-        return redirect()->back()->with('message', 'Articolo rifiutato con successo.');
+        return redirect()->back()->with('message', __('revisor.article_rejected'));
     }
 
     public function workWithUs()
@@ -78,7 +84,7 @@ class RevisorController extends Controller
         );
 
         return redirect()->route('work.with.us')
-            ->with('success', 'Richiesta inviata con successo.');
+            ->with('success', __('revisor.request_sent'));
     }
 
     public function undoLastAction()
@@ -86,13 +92,13 @@ class RevisorController extends Controller
         $articleId = session('last_article_id');
 
         if (!$articleId) {
-            return redirect()->back()->with('error', 'Nessuna operazione da annullare.');
+            return redirect()->back()->with('error', __('revisor.no_action_to_undo'));
         }
 
         $article = Article::find($articleId);
 
         if (!$article) {
-            return redirect()->back()->with('error', 'Articolo non trovato.');
+            return redirect()->back()->with('error', __('revisor.article_not_found'));
         }
 
         $article->is_accepted = null;
@@ -100,6 +106,6 @@ class RevisorController extends Controller
 
         session()->forget('last_article_id');
 
-        return redirect()->back()->with('message', 'Ultima operazione annullata con successo.');
+        return redirect()->back()->with('message', __('revisor.undo_success'));
     }
 }

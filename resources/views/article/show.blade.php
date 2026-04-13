@@ -25,7 +25,7 @@
                                     <img
                                         src="{{ $image->getUrl(600, 400) }}"
                                         class="d-block w-100 rounded shadow"
-                                        alt="immagine {{ $key + 1 }} dell'articolo {{ $article->title }}"
+                                        alt="{{ __('show.image_alt', ['number' => $key + 1, 'title' => $article->title]) }}"
                                     >
                                 </div>
                             @endforeach
@@ -59,7 +59,7 @@
                     </h2>
 
                     <p class="mb-3 fw-bold">
-                        {{ __('show.price') }}: {{ $article->price }} euro
+                        {{ __('show.price') }}: {{ $article->price }} {{ __('show.currency') }}
                     </p>
 
                     <div class="mb-4">
@@ -73,7 +73,7 @@
                     </div>
 
                     <a href="{{ route('home') }}" class="home-button home-button-secondary">
-                        Torna alla home
+                        {{ __('show.back_home') }}
                     </a>
 
                 </div>

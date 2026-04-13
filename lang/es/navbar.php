@@ -6,7 +6,7 @@ return [
     'allCategories' => 'Todas las categorias',
     'noCategories' => 'No hay categorias disponibles',
     'createArticle' => 'Publicar',
-    'workWithUs' => 'Trabaja con nosotros',
+    'workWithUs' => 'Colabora',
     'searchPlaceholder' => 'Buscar articulos...',
     'search' => 'Buscar',
     'revisorZone' => 'Zona Revisor',

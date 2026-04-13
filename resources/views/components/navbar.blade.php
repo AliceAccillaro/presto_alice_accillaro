@@ -103,7 +103,7 @@
                             placeholder="{{ __('navbar.searchPlaceholder') }}"
                             value="{{ request('q') }}"
                         >
-                        <button type="submit" class="site-navbar-button-register flex-shrink-0">
+                        <button type="submit" class="site-navbar-search-button flex-shrink-0">
                             {{ __('navbar.search') }}
                         </button>
                     </form>

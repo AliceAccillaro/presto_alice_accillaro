@@ -72,7 +72,7 @@
                                                             <img
                                                                 src="{{ $image->getUrl(300, 300) }}"
                                                                 class="revisor-article-image"
-                                                                alt="immagine {{ $key + 1 }} dell'articolo {{ $article_to_check->title }}"
+                                                                alt="{{ __('revisor.image_alt', ['number' => $key + 1, 'title' => $article_to_check->title]) }}"
                                                             >
                                                         </div>
                                                     </div>
@@ -173,7 +173,7 @@
                             </p>
 
                             <div class="revisor-price">
-                                {{ $article_to_check->price }} euro
+                                {{ $article_to_check->price }} {{ __('revisor.currency') }}
                             </div>
 
                             <form action="{{ route('revisor.article.update', $article_to_check) }}" method="POST" class="mb-4">
@@ -284,6 +284,146 @@
                 </div>
             </div>
         @endif
+
+        <div class="revisor-history-section mt-5">
+            <div class="revisor-header-card">
+                <div>
+                    <span class="revisor-badge">{{ __('revisor.history_badge') }}</span>
+                    <h2 class="revisor-section-title mt-3 mb-2">{{ __('revisor.history_title') }}</h2>
+                    <p class="revisor-subtitle mb-0">
+                        {{ __('revisor.history_subtitle') }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-1">
+                @forelse ($reviewed_articles as $reviewed_article)
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <div class="revisor-info-card h-100">
+                            <div class="revisor-history-badges mb-3">
+                                <span class="revisor-category-badge">
+                                    {{ $reviewed_article->category->translated_name }}
+                                </span>
+
+                                <span class="revisor-status-badge {{ $reviewed_article->is_accepted ? 'revisor-history-accepted' : 'revisor-history-rejected' }}">
+                                    {{ $reviewed_article->is_accepted ? __('revisor.status_accepted') : __('revisor.status_rejected') }}
+                                </span>
+                            </div>
+
+                            <h3 class="revisor-article-title fs-4">
+                                {{ $reviewed_article->title }}
+                            </h3>
+
+                            <div class="revisor-history-meta">
+                                <p class="revisor-article-author mb-2">
+                                    {{ __('revisor.published_by') }} <strong>{{ $reviewed_article->user->name }}</strong>
+                                </p>
+
+                                <p class="mb-0 text-muted">
+                                    {{ __('revisor.reviewed_on') }}
+                                    <strong>{{ $reviewed_article->updated_at?->format('d/m/Y H:i') }}</strong>
+                                </p>
+                            </div>
+
+                            <div class="revisor-price mb-3">
+                                {{ $reviewed_article->price }} {{ __('revisor.currency') }}
+                            </div>
+
+                            @if ($reviewed_article->updated_at && $reviewed_article->updated_at->gt($reviewed_article->created_at))
+                                <span class="revisor-category-badge revisor-history-edited mb-3">
+                                    {{ __('revisor.edited_by_revisor') }}
+                                </span>
+                            @endif
+
+                            <p class="revisor-history-description mb-0 text-muted">
+                                {{ \Illuminate\Support\Str::limit($reviewed_article->description, 100) }}
+                            </p>
+
+                            @if ($reviewed_article->is_accepted)
+                                <details class="revisor-history-edit mt-4">
+                                    <summary class="revisor-history-summary">
+                                        {{ __('revisor.edit_approved_article') }}
+                                    </summary>
+
+                                    <form action="{{ route('revisor.article.update', $reviewed_article) }}" method="POST" class="mt-3">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <div class="mb-3">
+                                            <label class="create-article-label" for="history-title-{{ $reviewed_article->id }}">
+                                                {{ __('revisor.edit_title') }}
+                                            </label>
+                                            <input
+                                                id="history-title-{{ $reviewed_article->id }}"
+                                                type="text"
+                                                name="title"
+                                                class="create-article-input"
+                                                value="{{ $reviewed_article->title }}"
+                                            >
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="create-article-label" for="history-price-{{ $reviewed_article->id }}">
+                                                {{ __('revisor.edit_price') }}
+                                            </label>
+                                            <input
+                                                id="history-price-{{ $reviewed_article->id }}"
+                                                type="text"
+                                                name="price"
+                                                class="create-article-input"
+                                                value="{{ $reviewed_article->price }}"
+                                            >
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="create-article-label" for="history-category-{{ $reviewed_article->id }}">
+                                                {{ __('revisor.edit_category') }}
+                                            </label>
+                                            <select
+                                                id="history-category-{{ $reviewed_article->id }}"
+                                                name="category_id"
+                                                class="create-article-select"
+                                            >
+                                                @foreach ($categories as $category)
+                                                    <option
+                                                        value="{{ $category->id }}"
+                                                        @selected($reviewed_article->category_id == $category->id)
+                                                    >
+                                                        {{ $category->translated_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="create-article-label" for="history-description-{{ $reviewed_article->id }}">
+                                                {{ __('revisor.edit_description') }}
+                                            </label>
+                                            <textarea
+                                                id="history-description-{{ $reviewed_article->id }}"
+                                                name="description"
+                                                class="create-article-textarea"
+                                                rows="4"
+                                            >{{ $reviewed_article->description }}</textarea>
+                                        </div>
+
+                                        <button class="home-button home-button-secondary w-100" type="submit">
+                                            {{ __('revisor.save_changes') }}
+                                        </button>
+                                    </form>
+                                </details>
+                            @endif
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="revisor-empty-images">
+                            {{ __('revisor.history_empty') }}
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
 
     </div>
 </x-layout>

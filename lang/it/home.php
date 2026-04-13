@@ -9,10 +9,12 @@ return [
     'startNow' => 'Inizia ora',
     'login' => 'Accedi',
     'cardTitle' => 'Inserisci e vendi prodotti in modo veloce',
-    'cardText' => 'Metti in vendita i tuoi prodotti in pochi clic e raggiungi più clienti con la nostra piattaforma intuitiva.',
+    'cardText' => 'Metti in vendita i tuoi prodotti in pochi clic e raggiungi piu clienti con la nostra piattaforma intuitiva.',
     'latestArticles' => 'Ultimi articoli',
     'resultsFor' => 'Risultati per:',
     'noCategory' => 'Senza categoria',
     'detail' => 'Dettaglio',
     'noArticles' => 'Nessun articolo trovato.',
+    'currency' => 'euro',
+    'image_alt' => "immagine dell'articolo :title",
 ];

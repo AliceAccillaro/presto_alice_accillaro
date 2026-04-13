@@ -15,4 +15,6 @@ return [
     'noCategory' => 'No category',
     'detail' => 'Detail',
     'noArticles' => 'No articles found.',
+    'currency' => 'euro',
+    'image_alt' => 'image of the article :title',
 ];

@@ -13,4 +13,5 @@ return [
     'previewTitle' => 'Vista previa de fotos',
     'removeImage' => 'Eliminar',
     'submit' => 'Crear',
+    'article_created' => 'Articulo creado correctamente!',
 ];

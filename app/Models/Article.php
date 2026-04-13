@@ -29,13 +29,7 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function index()
-    {
-        $article_to_check = Article::where('is_accepted', null)->first();
-        return view('revisor.index', compact('article_to_check'));
-    }
-
-     public function setAccepted($value)
+    public function setAccepted($value)
     {
         $this->is_accepted = $value;
         $this->save();

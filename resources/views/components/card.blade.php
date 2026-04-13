@@ -2,7 +2,7 @@
     <img
         src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(600, 400) : 'https://picsum.photos/600/400' }}"
         class="article-card-image"
-        alt="immagine dell'articolo {{ $article->title }}"
+        alt="{{ __('card.image_alt', ['title' => $article->title]) }}"
     >
 
     <div class="article-card-body d-flex flex-column">
@@ -20,7 +20,7 @@
         </p>
 
         <p class="article-card-price mb-3">
-            {{ $article->price }} euro
+            {{ $article->price }} {{ __('card.currency') }}
         </p>
 
         <div class="mt-auto">

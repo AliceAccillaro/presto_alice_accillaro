@@ -22,6 +22,8 @@
     --radius-large: 26px;
 }
 
+/* Base Layout */
+
 body {
     margin: 0;
     padding: 0;
@@ -34,16 +36,18 @@ body {
     min-height: 100vh;
 }
 
+/* Navbar */
+
 .site-navbar-brand-logo {
-    height: 50px;
+    height: 60px;
     width: auto;
 }
 
 .nav-text-presto {
     font: bold 25px 'Roboto', sans-serif;
-    font-size: 2.25rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: var(--color-black);
 }
 
@@ -62,7 +66,7 @@ body {
 }
 
 .site-navbar {
-    padding: 20px 32px;
+    padding: 24px 38px;
     border: 1px solid #e4e4e4;
     border-radius: var(--radius-pill);
     background-color: rgba(255, 255, 255, 0.9);
@@ -75,13 +79,13 @@ body {
 .site-navbar-brand {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
     text-decoration: none;
 }
 
 .site-navbar-brand-icon {
-    width: 54px;
-    height: 54px;
+    width: 66px;
+    height: 66px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,13 +102,13 @@ body {
 }
 
 .site-navbar-links {
-    gap: 12px;
+    gap: 16px;
 }
 
 .site-navbar-link {
     color: #2a2a2a;
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 400;
     margin: 0 10px;
     transition: 0.2s ease;
 }
@@ -121,13 +125,13 @@ body {
 .site-navbar-buttons {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
 }
 
 .site-navbar-button-login {
     color: var(--color-text-primary);
     text-decoration: none;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -137,19 +141,35 @@ body {
 
 .site-navbar-button-register,
 .site-navbar-user {
-    padding: 15px 26px;
+    min-width: 132px;
+    padding: 15px 24px;
     border: 1px solid #d8d8d8;
     border-radius: var(--radius-pill);
     background-color: var(--color-white);
     color: var(--color-text-primary);
     text-decoration: none;
-    font-size: 19px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.site-navbar-search-button {
+    min-width: 72px;
+    padding: 10px 14px;
+    border: 1px solid #d8d8d8;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 16px;
     font-weight: 600;
     transition: 0.2s ease;
 }
 
 .site-navbar-button-register:hover,
-.site-navbar-user:hover {
+.site-navbar-user:hover,
+.site-navbar-search-button:hover {
     background-color: #f0f0f0;
     color: var(--color-black);
 }
@@ -172,20 +192,20 @@ body {
 
 .site-navbar-search-form {
     width: 100%;
-    max-width: 580px;
-    min-width: 380px;
-    flex: 0 0 580px;
+    max-width: 660px;
+    min-width: 440px;
+    flex: 0 0 660px;
 }
 
 .site-navbar-search-input {
-    min-width: 240px;
+    min-width: 280px;
     flex: 1 1 auto;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .search-bord,
-.site-navbar-search-form .site-navbar-button-register {
-    min-height: 52px;
+.site-navbar-search-form .site-navbar-search-button {
+    min-height: 48px;
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
@@ -204,7 +224,8 @@ body {
 
     .site-navbar-link {
         margin: 0 1px;
-        font-size: 13px;
+        font-size: 15px;
+        font-weight: 400;
         white-space: nowrap;
     }
 
@@ -228,7 +249,14 @@ body {
     .site-navbar-button-register,
     .site-navbar-user,
     .home-button {
+        min-width: 104px;
         padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .site-navbar-search-button {
+        min-width: 72px;
+        padding: 8px 12px;
         font-size: 13px;
     }
 
@@ -288,6 +316,8 @@ body {
     background-color: #f5f5f5;
     color: var(--color-black);
 }
+
+/* Home Hero */
 
 .home-hero-section {
     position: relative;
@@ -477,6 +507,8 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Auth */
+
 .auth-section {
     padding: 80px 0;
 }
@@ -525,6 +557,8 @@ body {
     border-color: #999;
 }
 
+/* Footer */
+
 .footer {
     background-color: #f8f9fa;
 }
@@ -552,6 +586,8 @@ body {
 .footer-button:hover {
     background-color: var(--color-success);
 }
+
+/* Article Cards */
 
 .article-card {
     border-radius: 16px;
@@ -625,6 +661,8 @@ body {
     background-color: var(--color-success);
     color: white;
 }
+
+/* Revisor */
 
 .revisor-page {
     padding-top: 30px;
@@ -768,6 +806,69 @@ body {
     font-weight: 700;
 }
 
+.revisor-history-accepted {
+    background-color: rgba(35, 166, 97, 0.14);
+    color: #1e7a4b;
+}
+
+.revisor-history-rejected {
+    background-color: rgba(214, 76, 76, 0.14);
+    color: #a33434;
+}
+
+.revisor-history-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    min-height: 44px;
+}
+
+.revisor-history-section .revisor-info-card {
+    min-height: 100%;
+}
+
+.revisor-history-section .revisor-article-title {
+    min-height: 84px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.revisor-history-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+    min-height: 92px;
+}
+
+.revisor-history-edited {
+    align-self: flex-start;
+    min-height: 38px;
+}
+
+.revisor-history-description {
+    min-height: 120px;
+}
+
+.revisor-history-edit {
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 16px;
+    margin-top: auto !important;
+}
+
+.revisor-history-summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.revisor-history-summary::-webkit-details-marker {
+    display: none;
+}
+
 .revisor-article-title {
     font-size: 2rem;
     font-weight: 700;
@@ -882,6 +983,8 @@ body {
     font-size: 1rem;
 }
 
+/* Create Article */
+
 .create-article-section {
     padding: 40px 0 70px;
 }
@@ -983,6 +1086,8 @@ body {
     box-shadow: var(--shadow-light);
     border: 1px solid var(--color-border-light);
 }
+
+/* Responsive */
 
 @media (max-width: 767.98px) {
     .create-article-section {
