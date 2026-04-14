@@ -39,21 +39,21 @@ body {
 /* Navbar */
 
 .site-navbar-brand-logo {
-    height: 60px;
+    height: 42px;
     width: auto;
 }
 
 .nav-text-presto {
     font: bold 25px 'Roboto', sans-serif;
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     color: var(--color-black);
 }
 
 .site-navbar-wrapper {
-    padding-top: 32px;
-    padding-bottom: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     position: relative;
     z-index: 3000;
     isolation: isolate;
@@ -66,7 +66,7 @@ body {
 }
 
 .site-navbar {
-    padding: 24px 38px;
+    padding: 16px 22px;
     border: 1px solid #e4e4e4;
     border-radius: var(--radius-pill);
     background-color: rgba(255, 255, 255, 0.9);
@@ -79,13 +79,13 @@ body {
 .site-navbar-brand {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 12px;
     text-decoration: none;
 }
 
 .site-navbar-brand-icon {
-    width: 66px;
-    height: 66px;
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,9 +107,10 @@ body {
 
 .site-navbar-link {
     color: #2a2a2a;
-    font-size: 22px;
+    font-size: 15px;
     font-weight: 400;
-    margin: 0 10px;
+    margin: 0 2px;
+    padding: 8px 10px !important;
     transition: 0.2s ease;
 }
 
@@ -117,15 +118,31 @@ body {
     color: var(--color-black);
 }
 
+.site-navbar-menu,
+.site-navbar-right {
+    min-width: 0;
+}
+
 .site-navbar-actions {
     display: flex;
     align-items: center;
 }
 
+.site-navbar-right {
+    width: 100%;
+}
+
 .site-navbar-buttons {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.site-navbar-buttons .home-button {
+    min-width: 90px;
+    padding: 9px 14px;
+    font-size: 14px;
 }
 
 .site-navbar-button-login {
@@ -141,14 +158,14 @@ body {
 
 .site-navbar-button-register,
 .site-navbar-user {
-    min-width: 132px;
-    padding: 15px 24px;
+    min-width: 104px;
+    padding: 10px 16px;
     border: 1px solid #d8d8d8;
     border-radius: var(--radius-pill);
     background-color: var(--color-white);
     color: var(--color-text-primary);
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     transition: 0.2s ease;
@@ -156,13 +173,13 @@ body {
 
 .site-navbar-search-button {
     min-width: 72px;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border: 1px solid #d8d8d8;
     border-radius: var(--radius-pill);
     background-color: var(--color-white);
     color: var(--color-text-primary);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     transition: 0.2s ease;
 }
@@ -192,25 +209,78 @@ body {
 
 .site-navbar-search-form {
     width: 100%;
-    max-width: 660px;
-    min-width: 440px;
-    flex: 0 0 660px;
+    max-width: 360px;
+    min-width: 0;
+    flex: 1 1 240px;
+    gap: 8px;
+    padding: 4px 6px 4px 16px;
+    border: 1px solid #d8dde4;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-white);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .site-navbar-search-input {
-    min-width: 280px;
+    min-width: 0;
+    width: 1%;
     flex: 1 1 auto;
-    font-size: 21px;
+    font-size: 14px;
+    border: none;
+    background: transparent;
+    box-shadow: none !important;
+    padding: 0;
+}
+
+.site-navbar-search-input:focus {
+    border: none;
+    background: transparent;
+    box-shadow: none !important;
 }
 
 .search-bord,
 .site-navbar-search-form .site-navbar-search-button {
-    min-height: 48px;
+    min-height: 40px;
+}
+
+.site-navbar-locales {
+    flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+    .site-navbar .navbar-collapse {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    .site-navbar-menu {
+        flex: 0 1 auto;
+        flex-wrap: nowrap;
+        min-width: 0;
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
+    }
+
+    .site-navbar-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px !important;
+        flex: 1 1 auto;
+        width: auto;
+    }
+
+    .site-navbar-buttons {
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
     .site-navbar {
-        padding: 10px 10px;
+        padding: 14px 16px;
     }
 
     .nav-text-presto {
@@ -234,29 +304,30 @@ body {
     }
 
     .site-navbar-search-form {
-        max-width: 280px;
-        min-width: 210px;
-        flex: 0 0 280px;
+        max-width: 240px;
+        flex-basis: 220px;
+        padding-left: 12px;
+        padding-right: 5px;
     }
 
     .site-navbar-search-input {
-        min-width: 110px;
+        min-width: 0;
         font-size: 14px;
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .site-navbar-button-register,
     .site-navbar-user,
     .home-button {
-        min-width: 104px;
-        padding: 10px 14px;
-        font-size: 14px;
+        min-width: 88px;
+        padding: 9px 12px;
+        font-size: 13px;
     }
 
     .site-navbar-search-button {
-        min-width: 72px;
-        padding: 8px 12px;
+        min-width: 66px;
+        padding: 8px 10px;
         font-size: 13px;
     }
 
@@ -275,8 +346,8 @@ body {
 }
 
 .locale-flag {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -660,6 +731,79 @@ body {
     border-radius: var(--radius-pill);
     background-color: var(--color-success);
     color: white;
+}
+
+/* Pagination */
+
+.presto-pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.presto-pagination-summary {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.presto-pagination-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-white);
+    box-shadow: 0 10px 24px rgba(23, 78, 95, 0.08);
+}
+
+.presto-pagination-item {
+    display: flex;
+}
+
+.presto-pagination-link {
+    min-width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 14px;
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.presto-pagination-item:not(.is-active):not(.is-disabled) .presto-pagination-link:hover {
+    background-color: rgba(76, 152, 175, 0.12);
+    color: var(--color-black);
+    transform: translateY(-1px);
+}
+
+.presto-pagination-item.is-active .presto-pagination-link,
+.presto-pagination-item.is-current-range .presto-pagination-link {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    box-shadow: 0 8px 18px rgba(23, 78, 95, 0.22);
+}
+
+.presto-pagination-item.is-disabled .presto-pagination-link,
+.presto-pagination-item.is-ellipsis .presto-pagination-link {
+    color: #9aa5ad;
+    cursor: default;
+}
+
+.presto-pagination-simple {
+    justify-content: flex-end;
 }
 
 /* Revisor */
@@ -1300,6 +1444,7 @@ body {
         max-width: 100%;
         min-width: 0;
         flex: 1 1 100%;
+        padding-left: 14px;
     }
 
     .dropdown-menu {
@@ -1427,8 +1572,6 @@ body {
         align-items: stretch;
     }
 
-    .site-navbar-button-login,
-    .site-navbar-button-register,
     .site-navbar-user {
         text-align: center;
     }
@@ -1545,6 +1688,24 @@ body {
 }
 
 @media (max-width: 767.98px) {
+    .presto-pagination {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .presto-pagination-list {
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .presto-pagination-link {
+        min-width: 38px;
+        height: 38px;
+        padding: 0 12px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+    }
+
     .home-hero-badge {
         max-width: 100%;
         text-align: center;

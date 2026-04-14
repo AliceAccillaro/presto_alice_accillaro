@@ -27,7 +27,7 @@
 
             <div class="collapse navbar-collapse mt-3 mt-xl-0" id="siteNavbarContent">
 
-                <ul class="navbar-nav align-items-xl-center gap-xl-2 mx-xl-4 mb-3 mb-xl-0">
+                <ul class="navbar-nav site-navbar-menu align-items-xl-center gap-xl-2 mx-xl-4 mb-3 mb-xl-0">
 
                     <li class="nav-item">
                         <a class="nav-link site-navbar-link text-nowrap" href="{{ route('home') }}">
@@ -89,7 +89,7 @@
                     $currentCategory = request()->route('category');
                 @endphp
 
-                <div class="d-xl-flex align-items-xl-center ms-xl-auto gap-3 w-100 justify-content-xl-end">
+                <div class="site-navbar-right d-xl-flex align-items-xl-center ms-xl-auto gap-3 justify-content-xl-end">
 
                     <form
                         action="{{ $currentCategory ? route('byCategory', $currentCategory) : route('home') }}"
@@ -99,7 +99,7 @@
                         <input
                             type="text"
                             name="q"
-                            class="form-control me-2 search-bord site-navbar-search-input"
+                            class="form-control search-bord site-navbar-search-input"
                             placeholder="{{ __('navbar.searchPlaceholder') }}"
                             value="{{ request('q') }}"
                         >
@@ -108,7 +108,7 @@
                         </button>
                     </form>
 
-                    <div class="d-flex align-items-center gap-3 mb-3 mb-xl-0">
+                    <div class="site-navbar-locales d-flex align-items-center gap-3 mb-3 mb-xl-0">
                         <a href="{{ route('setLocale', 'it') }}" class="text-decoration-none">
                             <x-flag-language-it class="locale-flag" />
                         </a>

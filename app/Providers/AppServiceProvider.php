@@ -17,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Paginator::useBootstrapFive();
+        Paginator::defaultView('vendor.pagination.presto');
+        Paginator::defaultSimpleView('vendor.pagination.presto-simple');
+
         if (Schema::hasTable('categories')) {
             View::share('categories', Category::orderBy('name')->get());
         }
